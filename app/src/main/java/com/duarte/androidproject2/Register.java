@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 public class Register extends AppCompatActivity {
 
-    TextView name = findViewById(R.id.register_user);
-    TextView email = findViewById(R.id.register_email);
-    TextView password = findViewById(R.id.register_password);
-    TextView confirmPassword = findViewById(R.id.register_password_confirm);
-    Button registerButton = findViewById(R.id.register_button);
+    TextView name;
+    TextView email;
+    TextView password;
+    TextView confirmPassword;
+    Button registerButton;
 
     Student student;
     DatabaseHelper databaseHelper;
@@ -25,8 +25,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        registerButton = findViewById(R.id.register_button);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -41,9 +40,16 @@ public class Register extends AppCompatActivity {
 
     public void processRegistration(){
 
-//       TODO: Validate password match confirm password
-//       TODO: Validate username and or email does not already exist...
-//             This will depend on what we choose to use for our credentials
+//       TODO: Validate password match confirm password.
+//             Validate username and or email does not already exist,
+//             This will depend on what we choose to use for our credentials.
+//             Validate the input make sure it is what we expect.
+        name = findViewById(R.id.register_user);
+        email = findViewById(R.id.register_email);
+        password = findViewById(R.id.register_password);
+        confirmPassword = findViewById(R.id.register_password_confirm);
+
+
         student = new Student(name.toString(), email.toString(), password.toString());
 
         databaseHelper = new DatabaseHelper(getApplicationContext());

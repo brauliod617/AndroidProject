@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private StudentRegistration studentRegistration;
 
     //Initialize Database
-    public DatabaseHelper(Context context) {
+    DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         studentRegistration = new StudentRegistration();
     }
@@ -58,8 +58,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(studentRegistration.getColumnNameEmail(), student.getEmail());
         values.put(studentRegistration.getColumnNamePassword(), student.getPassWord());
 
+        //TODO: add check to verify insert was successful
         long newRowId = db.insert(studentRegistration.getTableName(), null, values);
-
     }
+
+
 
 }
