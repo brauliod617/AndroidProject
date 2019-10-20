@@ -1,21 +1,23 @@
 package com.duarte.androidproject2;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.BaseColumns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 public class Register extends AppCompatActivity {
 
-    TextView name;
-    TextView email;
-    TextView password;
-    TextView confirmPassword;
+    TextView name = findViewById(R.id.register_user);
+    TextView email = findViewById(R.id.register_email);
+    TextView password = findViewById(R.id.register_password);
+    TextView confirmPassword = findViewById(R.id.register_password_confirm);
+    Button registerButton = findViewById(R.id.register_button);
+
+    Student student;
+    DatabaseHelper databaseHelper;
 
 
     @Override
@@ -25,31 +27,27 @@ public class Register extends AppCompatActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-    }
 
-
-
-    public void ProcessRegistration(View view){
-
-       name = (TextView) findViewById(R.id.register_user);
-       email = (TextView) findViewById(R.id.register_email);
-       password = (TextView) findViewById(R.id.register_password);
-       confirmPassword = (TextView) findViewById(R.id.register_password_confirm);
-
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                processRegistration();
+            }
+        });
 
     }
 
-    public final class RegistrationSchema {
 
-        private RegistrationSchema() {}
 
-        public class FeedEntry implements BaseColumns {
-            public static final String TABLE_NAME = "registration";
-            public static final String COLUMN_NAME_USERNAME = "userName";
-            public static final String COLUMN_NAME_EMAIL = "email";
-            /*TODO: Research on what is secure way to store passwords as opposed to plain text. Maybe something like aws secure store*/
-            public static final String COLUMN_NAME_PASSWORD = "password";
-        }
+
+    public void processRegistration(){
+
+//       TODO: Validate password match confirm password
+//       TODO: Validate username and or email does not already exist...
+//             This will depend on what we choose to use for our credentials
+        student = new Student(name.toString(), email.toString(), password.toString());
+
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        databaseHelper.createStudentRegistration(student);
     }
 
 

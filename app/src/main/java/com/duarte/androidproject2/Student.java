@@ -2,9 +2,9 @@ package com.duarte.androidproject2;
 
 public class Student {
 
-
     private String userName;
     private String email;
+    /*TODO: Research on what is secure way to store passwords as opposed to plain text. Maybe something like aws secure store*/
     private String passWord;
 
     public Student(String userName, String email, String passWord) {
