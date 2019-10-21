@@ -15,9 +15,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
+    //Respond to Onclick from "create an account"
     public void register(View view){
         Intent intent = new Intent(this, Register.class);
+        startActivity(intent);
+    }
+    //Respond to OnClick from "Login"
+    public void login(View view) {
+        Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
     }
 

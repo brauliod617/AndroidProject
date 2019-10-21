@@ -13,4 +13,17 @@
     <string name="register_password">Password</string>
     <string name="register_confirmPassword">Confirm Password</string>
     <string name="register_register" >Register</string>
+    <string name="app_icon">App Icon</string>
+    <string name="nav_bar_background">Nav Bar Background</string>
+    <string name="add_class_button">Add Class Button</string>
+    <string name="notification_active_icon">Notification Active Icon</string>
+    <string name="nc_southwick_407">NC Southwick 407</string>
+    <string name="menu_icon">Menu Icon</string>
+    <string name="notification_bell_nav_bar">Notification Bell Nav Bar</string>
+    <string name="class_card_background">Class Card Background</string>
+    <string name="comp_3090">COMP 3090</string>
+    <string name="_2_00_3_15">2:00-3:15</string>
+    <string name="today">Today</string>
+    <string name="_18">18</string>
+    <string name="home">Home</string>
 </resources>
