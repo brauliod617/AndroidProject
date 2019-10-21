@@ -25,7 +25,7 @@
         android:id="@+id/register_user"
         android:layout_width="263dp"
         android:layout_height="51dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="96dp"
         android:background="@drawable/ic_fieldwithquestionmark"
         android:ems="10"
         android:hint="@string/register_userName"
@@ -37,21 +37,23 @@
         android:textColorHint="#0C0C0C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="263dp"
-        android:layout_height="51dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/ic_buttonpurple"
         android:text="@string/register_register"
         android:textColor="#F0F0F0"
         android:textColorHint="#00F7F7F7"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_password_confirm" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password_confirm"
+        app:layout_constraintVertical_bias="0.164" />
 
     <EditText
         android:id="@+id/register_password"
@@ -110,8 +112,8 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/app_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
