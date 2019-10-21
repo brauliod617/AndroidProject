@@ -8,7 +8,7 @@ package com.duarte.androidproject2;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "com.duarte.androidproject2.MESSAGE";
+//  TODO: Add forget password feature
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,3 +22,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+

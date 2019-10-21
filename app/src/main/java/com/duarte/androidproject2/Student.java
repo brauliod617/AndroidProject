@@ -13,6 +13,8 @@ public class Student {
         this.passWord = passWord;
     }
 
+    public Student(){}
+
     public String getUserName() {
         return userName;
     }

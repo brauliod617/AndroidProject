@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="358dp"
+        android:layout_height="212dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="208dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Create Class"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/roboto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="320dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/ic_textviewmaterial"
+            android:ems="10"
+            android:gravity="bottom|left"
+            android:hint="Class Name"
+            android:inputType="textPersonName"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:singleLine="true"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="51dp"
+            tools:text="Class Name" />
+
+        <EditText
+            android:id="@+id/editText2"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="320dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/ic_textviewmaterial"
+            android:ems="10"
+            android:gravity="bottom|left"
+            android:hint="Class Section"
+            android:inputType="textPersonName"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:singleLine="true"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="102dp"
+            tools:text="Class Section" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="CREATE"
+            android:textColor="#030303"
+            app:fontFamily="@font/roboto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="273dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@android:string/cancel"
+            android:textAllCaps="true"
+            android:textColor="#030303"
+            app:fontFamily="@font/roboto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="201dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

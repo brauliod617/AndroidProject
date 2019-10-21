@@ -36,8 +36,6 @@ public class Register extends AppCompatActivity {
     }
 
 
-
-
     public void processRegistration(){
 
 //       TODO: Validate password match confirm password.
@@ -50,7 +48,7 @@ public class Register extends AppCompatActivity {
         confirmPassword = findViewById(R.id.register_password_confirm);
 
 
-        student = new Student(name.toString(), email.toString(), password.toString());
+        student = new Student(name.getText().toString() , email.getText().toString(), password.getText().toString());
 
         databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.createStudentRegistration(student);

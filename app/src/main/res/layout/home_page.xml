@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="61dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_marginTop="-5dp"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_navbarbg" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="54dp"
+            android:layout_height="56dp"
+            android:background="@color/colorTransparent"
+            app:srcCompat="@drawable/ic_navbarmenu" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="20dp"
+            android:text="Home"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="340dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="350dp"
+            android:background="@color/colorTransparent"
+            app:srcCompat="@drawable/ic_alerts" />
+    </com.google.android.material.navigation.NavigationView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTransparent"
+            android:paddingTop="5dp"
+            app:srcCompat="@drawable/ic_classcontainer" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="62dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="18"
+            android:textColor="@color/colorPurple"
+            android:textSize="24sp"
+            app:fontFamily="@font/open_sans" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="62dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="48dp"
+            android:gravity="center"
+            android:text="Today"
+            android:textColor="@color/colorPurple"
+            android:textSize="12sp"
+            app:fontFamily="@font/open_sans" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="62dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="68dp"
+            android:gravity="center"
+            android:text="2:00-3:15"
+            android:textColor="@color/colorPurple"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="30dp"
+            android:text="COMP 3090"
+            android:textColor="#000000"
+            app:fontFamily="@font/open_sans" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="50dp"
+            android:text="NC Southwick 407"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            app:fontFamily="@font/open_sans" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorTransparent"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_alertsrang" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="95dp"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="520dp"
+            android:background="@color/colorTransparent"
+            app:srcCompat="@drawable/ic_addbtn" />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
