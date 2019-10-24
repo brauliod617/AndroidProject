@@ -38,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
     //This subclass is used for creating the student registration table
     public class StudentRegistration implements BaseColumns {
         private static final String TABLE_NAME = "registration";

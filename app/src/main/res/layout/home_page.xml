@@ -154,6 +154,7 @@
             android:layout_marginTop="520dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/add_class_button"
+            android:onClick="openDialog"
             app:srcCompat="@drawable/ic_addbtn" />
 
     </androidx.cardview.widget.CardView>
