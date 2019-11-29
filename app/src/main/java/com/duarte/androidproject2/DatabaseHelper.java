@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
-import android.widget.TextView;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 //this class is to handle all our database operations
 //all tables should be a subclass of DatabaseHelper
