@@ -32,7 +32,6 @@ public class Register extends AppCompatActivity {
                 processRegistration();
             }
         });
-
     }
 
 
@@ -53,7 +52,5 @@ public class Register extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.createStudentRegistration(student);
     }
-
-
 }
 
