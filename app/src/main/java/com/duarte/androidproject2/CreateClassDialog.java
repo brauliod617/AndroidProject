@@ -12,6 +12,9 @@ public class CreateClassDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
+        String className;
+        String sectionName;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_LIGHT);
 
         LayoutInflater inflater = requireActivity().getLayoutInflater();

@@ -1,6 +1,8 @@
 package com.duarte.androidproject2;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
 
     private String userName;
     private String email;
