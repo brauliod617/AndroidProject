@@ -3,6 +3,7 @@ package com.duarte.androidproject2;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -49,8 +50,12 @@ public class Register extends AppCompatActivity {
         student = new Student(name.getText().toString() , email.getText().toString(), password.getText().toString());
 
         //TODO: Validate student registration does not already exist before creating a new one
+        //      Throwing an unhandled expressin right now
+        //      android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: registration.email (code 1555)
         databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.createStudentRegistration(student);
+
+        Log.println(Log.DEBUG, "Log", "Created Registration");
     }
 }
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.provider.BaseColumns;
 import android.util.Log;
 
@@ -56,8 +55,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //TODO: Prevent duplicate usernames, maybe use UNIQUE?
         private static final String COLUMN_NAME_PASSWORD = "password";
 
-        String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + TABLE_NAME + "(" + COLUMN_NAME_USERNAME +
-                " TEXT, " +  COLUMN_NAME_EMAIL + " TEXT PRIMARY KEY, " + COLUMN_NAME_PASSWORD + " TEXT " + ")";
+        String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
+                + COLUMN_NAME_USERNAME + " TEXT, "
+                + COLUMN_NAME_EMAIL + " TEXT PRIMARY KEY, " + COLUMN_NAME_PASSWORD + " TEXT " + ")";
 
         String get_CREATETABLE_String(){ return CREATE_TABLE; }
         String getTableName(){ return TABLE_NAME; }
@@ -88,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + studentRegistrationTable.getTableName() + " WHERE "
                 + studentRegistrationTable.getColumnNameEmail()  + " = '" + studentEmail + "'";
 
-        Log.e("LOG", selectQuery);
+//        Log.e("LOG", selectQuery);
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -158,10 +158,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         private static final String TABLE_NAME = "classes";
         private static final String COLUMN_NAME_CLASS_NAME = "className";
         private static final String COLUMN_NAME_CLASS_SECTION = "classSection";
-        private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + TABLE_NAME + "( " +
+        private static final String CREATE_TABLE =
+                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                 COLUMN_NAME_CLASS_NAME + " TEXT, " +
                 COLUMN_NAME_CLASS_SECTION + " TEXT, " +
-                "PRIMARY KEY ( " + COLUMN_NAME_CLASS_SECTION + ", " + COLUMN_NAME_CLASS_SECTION + ")" +
+                "PRIMARY KEY( " +
+                        COLUMN_NAME_CLASS_SECTION + ", " +
+                        COLUMN_NAME_CLASS_SECTION +
+                        ")" +
                 ")";
 
         String getTableName() { return TABLE_NAME; }
@@ -210,12 +214,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         private static final String COLUMN_NAME_STUDENT_EMAIL = "email";
         private static final String COLUMN_NAME_CLASS_NAME = "className";
         private static final String COLUMN_NAME_CLASS_SECTION = "classSection";
-        private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + TABLE_NAME + " ( " +
+        private static final String CREATE_TABLE =
+                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                 COLUMN_NAME_STUDENT_EMAIL + " TEXT, " +
                 COLUMN_NAME_CLASS_NAME + " TEXT, " +
-                COLUMN_NAME_CLASS_SECTION + " TEXT " +
-                "PRIMARY_KEY ( " + COLUMN_NAME_STUDENT_EMAIL + ", " + COLUMN_NAME_CLASS_NAME + ", " +
-                COLUMN_NAME_CLASS_SECTION + ")" +
+                COLUMN_NAME_CLASS_SECTION + " TEXT, " +
+                " PRIMARY KEY( " +
+                        COLUMN_NAME_STUDENT_EMAIL + ", " +
+                        COLUMN_NAME_CLASS_NAME +  ", " +
+                        COLUMN_NAME_CLASS_SECTION +
+                        ")" +
                 ")";
 
         String getTableName() { return TABLE_NAME; }
@@ -242,8 +250,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     boolean isInClassExist(String email, String className, String classSection) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sqlQuery = "SELECT * FROM " + isInClassTable.getTableName() + " WHERE " +
-                isInClassTable.getColumnNameStudentEmail() + " = '" + email + "' AND" +
-                isInClassTable.getColumnNameClassName() + " = '" + className + "' AND" +
+                isInClassTable.getColumnNameStudentEmail() + " = '" + email + "' AND " +
+                isInClassTable.getColumnNameClassName() + " = '" + className + "' AND " +
                 isInClassTable.getColumnNameClassSection() + " = '" + classSection + "'";
 
         Cursor cursor = db.rawQuery(sqlQuery, null);

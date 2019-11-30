@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity{
     TextView txvPassword;
     Student student;
     DatabaseHelper dbHelper;
-    boolean debug = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity{
         String strEmail;
         String strPassword;
 
-        if(debug){
+        if(Global.debug){
             strEmail = "Test@yahoo.com";
             strPassword = "Duarte";
         }else {
