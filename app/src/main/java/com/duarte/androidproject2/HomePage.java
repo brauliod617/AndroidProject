@@ -24,6 +24,8 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
          //get student object sent over from login or register page
          student = (Student) getIntent().getSerializableExtra("objStudent");
          adpter = attachAdapterToList();
+
+         //load all current class and populate into class list
     }
 
     //When user clicks on "Create class button"
@@ -32,13 +34,15 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
         if(Global.debug){
             Log.println(Log.DEBUG, "log", "Add class button pressed");
-            populateClassesListView(adpter);
+            populateClassesListViewDebug(adpter);
         }else {
             DialogFragment newFragment = new CreateClassDialog(this);//"this" might be wrong
             newFragment.show(getSupportFragmentManager(), "Create Class");
         }
 
     }
+
+
 
     //Used to attach adapter to listview
     public ClassesAdpter attachAdapterToList(){
@@ -51,7 +55,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         return adpter;
     }
     //for debug use only, make sure adapter is working
-    public void populateClassesListView(ClassesAdpter adpter){
+    public void populateClassesListViewDebug(ClassesAdpter adpter){
         List<String> daysOfClass = new ArrayList<>();
         daysOfClass.add("Mon");
         daysOfClass.add("Wed");

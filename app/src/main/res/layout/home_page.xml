@@ -74,6 +74,9 @@
             app:srcCompat="@drawable/ic_alerts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--    TODO: It would be cool if we could get this button to just hover over the listview
+              Idk how to do it yet though-->
+
     <ListView
         android:id="@+id/classes_list_view"
         android:layout_width="0dp"
