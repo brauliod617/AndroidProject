@@ -9,7 +9,6 @@ import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import androidx.fragment.app.DialogFragment;
 
 //Creates the dialog box, and add listeners to the "ok" and "cancel" button

@@ -11,8 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Register"
-                  android:parentActivityName=".MainActivity">
+        <activity android:name=".Classes_list_template"></activity>
+        <activity
+            android:name=".Register"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -25,8 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomePage">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
 
         <meta-data
@@ -35,5 +38,3 @@
     </application>
 
 </manifest>
-
-<!--<div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>-->

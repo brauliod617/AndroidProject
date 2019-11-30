@@ -203,9 +203,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
 /********************************END OF CLASSES****************************************************/
-
 
 /********************************IS IN CLASS*******************************************************/
     //This subclass is used for creating the isInClass table
@@ -264,8 +262,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
 /********************************END OF IS IN CLASSES**********************************************/
+
+/********************************CREATE CS DB******************************************************/
+
+/********************************END OF CREATE CS DB***********************************************/
+
 
 
 }
