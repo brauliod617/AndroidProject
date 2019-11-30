@@ -1,14 +1,20 @@
 package com.duarte.androidproject2;
 
-public class Classes {
+public class IsInClass {
+    private String email;
     private String className;
     private String sectionNumber;
 
-    Classes(String className, String classNumber){
+    IsInClass(){}
+    IsInClass(String email, String className, String sectionNumber){
+        this.email = email;
         this.className = className;
-        this.sectionNumber = classNumber;
+        this.sectionNumber = sectionNumber;
     }
-    Classes(){}
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email;}
 
     public String getClassName() { return className; }
 
@@ -17,5 +23,4 @@ public class Classes {
     public String getSectionNumber() { return sectionNumber; }
 
     public void setSectionNumber(String sectionNumber) { this.sectionNumber = sectionNumber; }
-
 }

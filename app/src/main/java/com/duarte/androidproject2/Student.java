@@ -1,6 +1,8 @@
 package com.duarte.androidproject2;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Student implements Serializable {
 
@@ -8,11 +10,13 @@ public class Student implements Serializable {
     private String email;
     /*TODO: Research on what is secure way to store passwords as opposed to plain text. Maybe something like aws secure store*/
     private String passWord;
+    private List<Classes> classesList;
 
     public Student(String userName, String email, String passWord) {
         this.userName = userName;
         this.email = email;
         this.passWord = passWord;
+        this.classesList = new ArrayList<>();
     }
 
     public Student(){}
@@ -40,4 +44,6 @@ public class Student implements Serializable {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
+
+    public List<Classes> getClassesList() { return classesList; }
 }

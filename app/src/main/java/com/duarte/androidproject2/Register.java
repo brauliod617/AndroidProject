@@ -34,13 +34,12 @@ public class Register extends AppCompatActivity {
         });
     }
 
-
     public void processRegistration(){
 
-//       TODO: Validate password match confirm password.
-//             Validate username and or email does not already exist,
-//             This will depend on what we choose to use for our credentials.
-//             Validate the input make sure it is what we expect.
+        //TODO: Validate password match confirm password.
+        //      Validate username and or email does not already exist,
+        //      This will depend on what we choose to use for our credentials.
+        //       Validate the input make sure it is what we expect.
         name = findViewById(R.id.register_user);
         email = findViewById(R.id.register_email);
         password = findViewById(R.id.register_password);
@@ -49,6 +48,7 @@ public class Register extends AppCompatActivity {
 
         student = new Student(name.getText().toString() , email.getText().toString(), password.getText().toString());
 
+        //TODO: Validate student registration does not already exist before creating a new one
         databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.createStudentRegistration(student);
     }
