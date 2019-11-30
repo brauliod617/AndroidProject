@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".Classes_list_template">
+
+    <ImageButton
+        android:id="@+id/imv_classes_list_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTransparent"
+        android:contentDescription="@string/class_card_background"
+        android:paddingTop="5dp"
+        app:srcCompat="@drawable/ic_classcontainer" />
+
+    <TextView
+        android:id="@+id/txv_day_of_month"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/_18"
+        android:textColor="@color/colorPurple"
+        android:textSize="24sp"
+        app:fontFamily="@font/open_sans" />
+
+    <TextView
+        android:id="@+id/txv_day_of_week"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="@string/today"
+        android:textColor="@color/colorPurple"
+        android:textSize="12sp"
+        app:fontFamily="@font/open_sans" />
+
+    <TextView
+        android:id="@+id/txv_class_time"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="68dp"
+        android:gravity="center"
+        android:text="@string/_2_00_3_15"
+        android:textColor="@color/colorPurple"
+        android:textSize="14sp"
+        app:fontFamily="@font/open_sans" />
+
+    <TextView
+        android:id="@+id/txv_class_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/comp_3090"
+        android:textColor="#000000"
+        app:fontFamily="@font/open_sans" />
+
+    <TextView
+        android:id="@+id/txv_class_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/nc_southwick_407"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12sp"
+        app:fontFamily="@font/open_sans" />
+
+    <ImageButton
+        android:id="@+id/imb_notifications_bell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="350dp"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorTransparent"
+        android:contentDescription="@string/notification_active_icon"
+        android:visibility="visible"
+        app:srcCompat="@drawable/ic_alertsrang" />
+
+</RelativeLayout>

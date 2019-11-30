@@ -12,7 +12,7 @@
     <string name="register_studentEmail">Student Email</string>
     <string name="register_password">Password</string>
     <string name="register_confirmPassword">Confirm Password</string>
-    <string name="register_register" >Register</string>
+    <string name="register_register">Register</string>
     <string name="app_icon">App Icon</string>
     <string name="nav_bar_background">Nav Bar Background</string>
     <string name="add_class_button">Add Class Button</string>
