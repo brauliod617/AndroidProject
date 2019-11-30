@@ -6,14 +6,14 @@
   <path
       android:pathData="M360,4l-360,0l0,56l360,0z"
       android:strokeWidth="1"
-      android:fillColor="#000000"
+      android:fillColor="#494CA2"
       android:fillAlpha="1"
       android:fillType="evenOdd"
-      android:strokeColor="#00000000"/>
+      android:strokeColor="#494CA2"/>
   <path
       android:pathData="M360,4l-360,0l0,56l360,0z"
       android:strokeWidth="1"
       android:fillColor="#494CA2"
       android:fillType="evenOdd"
-      android:strokeColor="#00000000"/>
+      android:strokeColor="#494CA2"/>
 </vector>

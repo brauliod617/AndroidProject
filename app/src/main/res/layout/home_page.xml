@@ -5,9 +5,9 @@
     android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent">
+    android:background="@color/colorPurple">
 
-    <com.google.android.material.navigation.NavigationView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/navigationView3"
         android:layout_width="0dp"
         android:layout_height="61dp"
@@ -15,77 +15,86 @@
         app:layout_constraintBottom_toTopOf="@+id/imageButton5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:layout_marginTop="-5dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:adjustViewBounds="false"
             android:contentDescription="@string/nav_bar_background"
             android:cropToPadding="false"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_navbarbg" />
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="54dp"
-            android:layout_height="56dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/menu_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_navbarmenu" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="18dp"
             android:text="@string/home"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:layout_marginEnd="60dp" />
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="64dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="340dp"
-            android:layout_marginLeft="340dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="350dp"
-            android:layout_marginRight="350dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/notification_bell_nav_bar"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3"
             app:srcCompat="@drawable/ic_alerts" />
-    </com.google.android.material.navigation.NavigationView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
         android:id="@+id/classes_list_view"
-        android:layout_width="wrap_content"
-        android:layout_height="502dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/navigationView3"
         app:layout_constraintTop_toBottomOf="@+id/navigationView3" />
 
-    <!--    TODO: It would be cool if we could get this button to just hover over the listview
-              Idk how to do it yet though-->
     <ImageButton
         android:id="@+id/imageButton5"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:background="@color/colorTransparent"
         android:contentDescription="@string/add_class_button"
         android:onClick="openDialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navigationView3"
         app:srcCompat="@drawable/ic_addbtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
