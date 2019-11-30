@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:orientation="vertical">
+    android:background="@color/colorAccent">
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="match_parent"
-        android:layout_height="61dp">
+        android:id="@+id/navigationView3"
+        android:layout_width="0dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="501dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -59,21 +66,26 @@
 
     <ListView
         android:id="@+id/classes_list_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="502dp"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintStart_toStartOf="@+id/navigationView3"
+        app:layout_constraintTop_toBottomOf="@+id/navigationView3" />
 
-<!--    TODO: It would be cool if we could get this button to just hover over the listview
+    <!--    TODO: It would be cool if we could get this button to just hover over the listview
               Idk how to do it yet though-->
     <ImageButton
         android:id="@+id/imageButton5"
         android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_marginStart="175dp"
-        android:layout_marginLeft="175dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
         android:background="@color/colorTransparent"
         android:contentDescription="@string/add_class_button"
         android:onClick="openDialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigationView3"
         app:srcCompat="@drawable/ic_addbtn" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
