@@ -1,11 +1,25 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="AppTheme.Base">
+
+    </style>
+    <!-- theme inherits from the material theme -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/material_deep_purple_500</item>
+        <item name="colorPrimaryDark">@color/material_deep_purple_700</item>
+        <item name="colorAccent">@color/material_deep_purple_200</item>
+        <!--item name="android:statusBarColor">@color/material_deep_purple_700</item-->
+        <item name="android:textColorPrimary">@color/material_grey_700</item>
+        <!--item name="android:navigationBarColor">@color/material_deep_deep_purple_700</item-->
+        <item name="android:windowBackground">@color/material_white_1000</item>
+        <!-- this makes sure the action mode is painted over not above the action bar -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">@color/material_deep_purple_500</item>
     </style>
 
+    <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 </resources>

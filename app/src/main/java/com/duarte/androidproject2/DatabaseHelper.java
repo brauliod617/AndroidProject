@@ -137,8 +137,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
             //TODO: This function should only be called after studentExist() has been called and
             //      returned true. So it should not be null, but the count of rows should only be 1
-            //      if we are in here that means there may be more than 1 student email registed
-            //      this might never happen but just in case this is here, maybe throw exection...
+            //      if we are in here that means there may be more than 1 student email registered
+            //      this might never happen but just in case this is here, maybe throw exepction...
         }
 
         //if stored password matches given password

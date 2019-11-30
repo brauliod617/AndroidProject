@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity{
         String strPassword;
 
         if(Global.debug){
-            strEmail = "Test@yahoo.com";
-            strPassword = "Duarte";
+            strEmail = "Juyeong_Seo@student.uml.edu";
+            strPassword = "tjtjtj";
         }else {
             txvEmail = findViewById(R.id.main_User);
             txvPassword = findViewById(R.id.main_Password);
