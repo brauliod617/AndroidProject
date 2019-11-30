@@ -14,7 +14,7 @@
         android:background="@color/colorAccent">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/acdClassNameTextEdit"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="0dp"
             android:layout_height="51dp"
@@ -43,7 +43,7 @@
             tools:text="Class Name" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/acdClassSectionTextEdit"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="0dp"
             android:layout_height="51dp"
@@ -65,7 +65,7 @@
             android:typeface="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/acdClassNameTextEdit"
             tools:text="Class Section" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
