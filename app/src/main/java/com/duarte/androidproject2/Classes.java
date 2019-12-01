@@ -1,6 +1,9 @@
 package com.duarte.androidproject2;
 
-public class Classes {
+import java.io.Serializable;
+import java.util.HashMap;
+
+public class Classes implements Serializable {
     private String className;
     private String sectionNumber;
     private String classLocation;
@@ -31,6 +34,16 @@ public class Classes {
         this.notification = notification;
         this.classDay = classDay;
     }
+
+    Classes(HashMap<String, Object> objClasses){
+        this.className = objClasses.get("className").toString();
+        this.sectionNumber = objClasses.get("sectionNumber").toString();
+        this.classLocation = objClasses.get("classLocation").toString();
+        this.classDay = objClasses.get("classDay").toString();
+        this.notification = Boolean.parseBoolean(objClasses.get("notification").toString());
+
+
+    }
     Classes(){}
 
     public String getClassName() { return className; }
@@ -52,4 +65,27 @@ public class Classes {
     public String getClassDay() { return classDay; }
 
     public void setClassDay(String classDay) { this.classDay = classDay; }
+
+    @Override
+    public boolean equals(Object other){
+        if(other == null){
+            return false;
+        }
+
+        if(this.getClass() != other.getClass()){
+            return false;
+        }
+
+        if( (!this.className.equals(((Classes) other).className)) ||
+                (!this.sectionNumber.equals( ((Classes) other).sectionNumber )) ||
+                (!this.classLocation.equals( ((Classes) other).classLocation )) ||
+                (!this.classDay.equals( ((Classes) other ).classDay )) ||
+                (!this.notification.equals( ((Classes) other).notification))
+        ){
+            return false;
+        }
+
+        return true;
+    }
+
 }

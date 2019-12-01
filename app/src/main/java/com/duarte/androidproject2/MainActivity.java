@@ -30,14 +30,12 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseHelper = new FirebaseHelper();
     }
     //Respond to Onclick from "create an account"
     public void register(View view){
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
-
-        //TODO: Make it so it starts Homepage with registerd student class,
-        //      See login(View view) for example
     }
 
     //Respond to OnClick from "Login"
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
             strPassword = txvPassword.getText().toString();
         }
 
-        firebaseHelper = new FirebaseHelper();
+
         //check if user has entered a username and password
         if(strEmail.isEmpty() || strPassword.isEmpty()){
             //TODO: create dialog telling user to enter username and password
@@ -76,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
             if(current.get("email").equals(strEmail)){
                 if(current.get("password").equals(strPassword)) {
                     student = new Student(current);
+                    student.setDocId(document.getId());
                     Log.println(Log.DEBUG, "log", "Login successful");
                     Intent intent = new Intent(this, HomePage.class);
                     Bundle bundle = new Bundle();
