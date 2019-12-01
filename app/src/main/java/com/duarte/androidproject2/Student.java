@@ -2,6 +2,7 @@ package com.duarte.androidproject2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Student implements Serializable {
@@ -20,6 +21,12 @@ public class Student implements Serializable {
     }
 
     public Student(){}
+
+    public Student(HashMap<String, Object> objStudent){
+        this.userName = objStudent.get("userName").toString();
+        this.email = objStudent.get("email").toString();
+        this.passWord = objStudent.get("password").toString();
+    }
 
     public String getUserName() {
         return userName;
