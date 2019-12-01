@@ -5,4 +5,51 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorPurple">#494CA2</color>
     <color name="colorTransparent">#00008577</color>
+
+    <!-- deep purples -->
+    <color name="material_deep_purple_50">#EDE7F6</color>
+    <color name="material_deep_purple_100">#D1C4E9</color>
+    <color name="material_deep_purple_200">#B39DDB</color>
+    <color name="material_deep_purple_300">#9575CD</color>
+    <color name="material_deep_purple_400">#7E57C2</color>
+    <color name="material_deep_purple_500">#673AB7</color>
+    <color name="material_deep_purple_600">#5E35B1</color>
+    <color name="material_deep_purple_700">#512DA8</color>
+    <color name="material_deep_purple_800">#4527A0</color>
+    <color name="material_deep_purple_900">#311B92</color>
+    <color name="material_deep_purple_A100">#B388FF</color>
+    <color name="material_deep_purple_A200">#7C4DFF</color>
+    <color name="material_deep_purple_A400">#651FFF</color>
+    <color name="material_deep_purple_A700">#6200EA</color>
+
+    <!-- indigo -->
+    <color name="material_indigo_50">#E8EAF6</color>
+    <color name="material_indigo_100">#C5CAE9</color>
+    <color name="material_indigo_200">#9FA8DA</color>
+    <color name="material_indigo_300">#7986CB</color>
+    <color name="material_indigo_400">#5C6BC0</color>
+    <color name="material_indigo_500">#3F51B5</color>
+    <color name="material_indigo_600">#3949AB</color>
+    <color name="material_indigo_700">#303F9F</color>
+    <color name="material_indigo_800">#283593</color>
+    <color name="material_indigo_900">#1A237E</color>
+    <color name="material_indigo_A100">#8C9EFF</color>
+    <color name="material_indigo_A200">#536DFE</color>
+    <color name="material_indigo_A400">#3D5AFE</color>
+    <color name="material_indigo_A700">#304FFE</color>
+
+    <!--grey-->
+    <color name="material_grey_50">#FAFAFA</color>
+    <color name="material_grey_100">#F5F5F5</color>
+    <color name="material_grey_200">#EEEEEE</color>
+    <color name="material_grey_300">#E0E0E0</color>
+    <color name="material_grey_400">#BDBDBD</color>
+    <color name="material_grey_500">#9E9E9E</color>
+    <color name="material_grey_600">#757575</color>
+    <color name="material_grey_700">#616161</color>
+    <color name="material_grey_800">#424242</color>
+    <color name="material_grey_900">#212121</color>
+    <color name="material_black_1000">#000000</color>
+    <color name="material_white_1000">#ffffff</color>
+
 </resources>

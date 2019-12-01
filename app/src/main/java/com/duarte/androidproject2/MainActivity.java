@@ -7,15 +7,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity{
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+
+public class MainActivity extends AppCompatActivity implements FirebaseInterface{
 
 //  TODO: Add forget password feature
 
     TextView txvEmail;
     TextView txvPassword;
+    String strEmail;
+    String strPassword;
     Student student;
-    DatabaseHelper dbHelper;
 
+    //DatabaseHelper dbHelper;
+    FirebaseHelper firebaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +42,20 @@ public class MainActivity extends AppCompatActivity{
 
     //Respond to OnClick from "Login"
     public void login(View view) {
-        String strEmail;
-        String strPassword;
 
         if(Global.debug){
-            strEmail = "Test@yahoo.com";
-            strPassword = "Duarte";
+//            strEmail = "Juyeong_Seo@student.uml.edu";
+//            strPassword = "tjtjtj";
+              strEmail = "Test@yahoo.com";
+              strPassword = "Duarte";
         }else {
             txvEmail = findViewById(R.id.main_User);
             txvPassword = findViewById(R.id.main_Password);
             strEmail = txvEmail.getText().toString();
             strPassword = txvPassword.getText().toString();
         }
-        dbHelper = new DatabaseHelper(getApplicationContext());
 
+        firebaseHelper = new FirebaseHelper();
         //check if user has entered a username and password
         if(strEmail.isEmpty() || strPassword.isEmpty()){
             //TODO: create dialog telling user to enter username and password
@@ -55,45 +64,41 @@ public class MainActivity extends AppCompatActivity{
             return;
         }
 
-        if(!validateLogin(strEmail, strPassword, dbHelper)){
-            //TODO: create dialog telling user password or username is wrong
-            Log.println(Log.DEBUG, "Log","Invalid password or username");
-            return;
-        }
+        firebaseHelper.validateStudentLogin(this);
 
-        //At this point we know we have a registered username with a correct password, we create a
-        //student obj with data pulled from db. This object will represent the logged in student
-        student =  dbHelper.getStudentRegistration(strEmail);
-
-        Intent intent = new Intent(this, HomePage.class);
-        Bundle bundle = new Bundle();
-
-        //We pass student obj to following activity so we know which user is logged in
-        bundle.putSerializable("objStudent", student);
-        intent.putExtras(bundle);
-
-        Log.println(Log.DEBUG, "log", "Login successful");
-
-        //start HomePage activity
-        startActivity(intent);
     }//end of login(View view)
 
-    public boolean validateLogin(String email, String password, DatabaseHelper dbHelper){
 
-        //TODO: Validate email format,
+    @Override
+    public void onSuccess(Task<QuerySnapshot> task){
+        for (QueryDocumentSnapshot document : task.getResult()) {
+            HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
+            if(current.get("email").equals(strEmail)){
+                if(current.get("password").equals(strPassword)) {
+                    student = new Student(current);
+                    Log.println(Log.DEBUG, "log", "Login successful");
+                    Intent intent = new Intent(this, HomePage.class);
+                    Bundle bundle = new Bundle();
 
+                    //We pass student obj to following activity so we know which user is logged in
+                    bundle.putSerializable("objStudent", student);
+                    intent.putExtras(bundle);
 
-        //if student registration does not exist
-        if(!dbHelper.studentExist(email)){
-            return false;
+                    //start HomePage activity
+                    startActivity(intent);
+
+                }else {
+                    Log.println(Log.DEBUG, "Log","Login was not successful");
+                    return;
+                }
+                break;
+            }
         }
+    }
 
-        //if user entered the correct password
-        if(dbHelper.validatePassword(email, password)) {
-            return true;
-        }
-
-        return false;
+    @Override
+    public void onFailed(Task<QuerySnapshot> data) {
+        Log.println(Log.DEBUG, "Log","ERROR has occurred getting student");
     }
 
 }

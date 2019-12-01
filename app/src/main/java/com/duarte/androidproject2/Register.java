@@ -18,7 +18,7 @@ public class Register extends AppCompatActivity {
     Button registerButton;
 
     Student student;
-    DatabaseHelper databaseHelper;
+    FirebaseHelper firebaseHelper;
 
 
     @Override
@@ -52,10 +52,14 @@ public class Register extends AppCompatActivity {
         //TODO: Validate student registration does not already exist before creating a new one
         //      Throwing an unhandled expressin right now
         //      android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: registration.email (code 1555)
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-        databaseHelper.createStudentRegistration(student);
+        //databaseHelper = new DatabaseHelper(getApplicationContext());
+        //databaseHelper.createStudentRegistration(student);
 
+        firebaseHelper = new FirebaseHelper();
+
+        firebaseHelper.registerStudentFirebase(student);
         Log.println(Log.DEBUG, "Log", "Created Registration");
+        super.onBackPressed();
     }
 }
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "33181667339",
+    "firebase_url": "https://androidproject2-df3d4.firebaseio.com",
+    "project_id": "androidproject2-df3d4",
+    "storage_bucket": "androidproject2-df3d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33181667339:android:8f625e2c0af603b1a8370e",
+        "android_client_info": {
+          "package_name": "com.duarte.androidproject2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33181667339-79qeo6btsc1ms2vkv9j158igulktalbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsowo0EO-cU4Mc0xW7IkzkalnAtdWzfqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33181667339-79qeo6btsc1ms2vkv9j158igulktalbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
