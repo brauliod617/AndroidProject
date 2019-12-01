@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class ClassesAdpter extends ArrayAdapter<Classes> {
     private Context context;
     private List<Classes> classesList;
 
-    public ClassesAdpter(@NonNull Context context,@LayoutRes ArrayList<Classes> classesList) {
+    public ClassesAdpter(@NonNull Context context, ArrayList<Classes> classesList) {
         super(context, 0, classesList);
         this.context = context;
         this.classesList = classesList;
@@ -39,16 +38,8 @@ public class ClassesAdpter extends ArrayAdapter<Classes> {
         ImageView background = listItem.findViewById(R.id.imv_classes_list_bg);
         background.setImageResource(R.drawable.ic_classcontainer);
 
-        TextView txvDayOfMonth = listItem.findViewById(R.id.txv_day_of_month);
-        //TODO: figure out how to calculate next class day and show it here
-        txvDayOfMonth.setText(R.string._18);
-
-        TextView txvDayOfWeek = listItem.findViewById(R.id.txv_day_of_week);
-        //TODO: same as above
-        txvDayOfWeek.setText(R.string.today);
-
-        TextView txvClassTime = listItem.findViewById(R.id.txv_class_time);
-        txvClassTime.setText(currentClass.getStartNEndtimeOfClass() );
+        TextView txvClassDay = listItem.findViewById(R.id.txv_classDay);
+        txvClassDay.setText(currentClass.getClassDay());
 
         TextView txvClassLocation = listItem.findViewById(R.id.txv_class_location);
         txvClassLocation.setText(currentClass.getClassLocation());

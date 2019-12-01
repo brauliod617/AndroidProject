@@ -174,18 +174,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String getCreateTable() { return CREATE_TABLE; }
     }
     //insert row into table
-    void createClass(Classes classes){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(classesTable.getColumnNameClassName(), classes.getClassName());
-        values.put(classesTable.getColumnNameClassSection(), classes.getSectionNumber());
-
-        if(db.insert(classesTable.getTableName(), null, values) == -1){
-            Log.println(Log.DEBUG, "log", "Failed to insert classes Table");
-            //TODO: figure out what to do in this case, throw exception?
-        }
-    }
+//    void createClass(Classes classes){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//
+//        values.put(classesTable.getColumnNameClassName(), classes.getClassName());
+//        values.put(classesTable.getColumnNameClassSection(), classes.getSectionNumber());
+//
+//        if(db.insert(classesTable.getTableName(), null, values) == -1){
+//            Log.println(Log.DEBUG, "log", "Failed to insert classes Table");
+//            //TODO: figure out what to do in this case, throw exception?
+//        }
+//    }
     //verify if a row exists
     boolean classExist(String className, String classSection) {
         SQLiteDatabase db = this.getWritableDatabase();

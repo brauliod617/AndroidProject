@@ -4,6 +4,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public interface FirebaseInterface {
-    public void onSuccess(Task<QuerySnapshot> data);
-    public void onFailed(Task<QuerySnapshot> data);
+    void onSuccess(Task<QuerySnapshot> data);
+    void onFailed(Task<QuerySnapshot> data);
 }

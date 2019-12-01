@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
 
     //DatabaseHelper dbHelper;
     FirebaseHelper firebaseHelper;
-    FirebaseInterface firebaseInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
             return;
         }
 
-        firebaseHelper.validateStudentLogin(strEmail, strPassword, this);
+        firebaseHelper.validateStudentLogin(this);
 
     }//end of login(View view)
 
@@ -101,28 +100,6 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     public void onFailed(Task<QuerySnapshot> data) {
         Log.println(Log.DEBUG, "Log","ERROR has occurred getting student");
     }
-
-
-
-
-
-//    public boolean validateLogin(String email, String password, FirebaseHelper firebaseHelper){
-//
-//        //TODO: Validate email format,
-//
-//
-//        //if student registration does not exist
-//        if(!dbHelper.studentExist(email)){
-//            return false;
-//        }
-//
-//        //if user entered the correct password
-//        if(dbHelper.validatePassword(email, password)) {
-//            return true;
-//        }
-//
-//        return false;
-//    }
 
 }
 
