@@ -13,7 +13,6 @@ import androidx.fragment.app.DialogFragment;
 
 //Creates the dialog box, and add listeners to the "ok" and "cancel" button
 public class CreateClassDialog extends DialogFragment implements DialogInterface.OnClickListener {
-    private HomePage callBackActivity;
     private EditText edtClassName;
     private EditText edtSectionName;
     private LinearLayout layout;
@@ -28,8 +27,6 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         layout = new LinearLayout(getContext());
         layout.setOrientation(LinearLayout.VERTICAL);
-
-        callBackActivity = new HomePage();
 
         edtClassName = new EditText(getActivity());
         edtSectionName = new EditText(getActivity());
