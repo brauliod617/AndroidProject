@@ -18,7 +18,6 @@ public class Register extends AppCompatActivity {
     Button registerButton;
 
     Student student;
-    DatabaseHelper databaseHelper;
     FirebaseHelper firebaseHelper;
 
 
