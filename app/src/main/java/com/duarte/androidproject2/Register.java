@@ -46,7 +46,6 @@ public class Register extends AppCompatActivity {
         password = findViewById(R.id.register_password);
         confirmPassword = findViewById(R.id.register_password_confirm);
 
-
         student = new Student(name.getText().toString() , email.getText().toString(), password.getText().toString());
 
         //TODO: Validate student registration does not already exist before creating a new one

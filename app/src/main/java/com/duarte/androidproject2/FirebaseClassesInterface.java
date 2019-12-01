@@ -7,6 +7,9 @@ public interface FirebaseClassesInterface {
     void onGetClassesSuccess(Task<QuerySnapshot> data, Classes classes);
     void onGetClassesFailed(Task<QuerySnapshot> data);
 
-    void onGetIsInClassesSuccess(Task<QuerySnapshot> data, IsInClass isInClass);
+    void onGetIsInClassesSuccess(Task<QuerySnapshot> data, IsInClass isInClass, Classes classes);
     void onGetIsInClassesFailed(Task<QuerySnapshot> data);
+
+    void onLoadClassesSuccess(Task<QuerySnapshot> task);
+    void onLoadClassesFailed(Task<QuerySnapshot> task);
 }

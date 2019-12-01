@@ -77,10 +77,10 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
     @Override
     public void onClick(DialogInterface dialog, int which){
         if(Global.debug){
-            strClassName = "COMP101";
-            strSectionName = "202";
-            strClassDay = "MWF";
-            strClassLocation = "NC Southwick 407";
+            strClassName = "COMP999";
+            strSectionName = "444";
+            strClassDay = "MWFS";
+            strClassLocation = "NC Ball 307";
         }else {
             strClassName = edtClassName.getText().toString();
             strSectionName = edtSectionName.getText().toString();
