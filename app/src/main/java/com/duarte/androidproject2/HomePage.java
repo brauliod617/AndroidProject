@@ -71,23 +71,18 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     public void okButtonClicked(String strClassName, String strSectionName, String classDay,
                                 String classLocation){
 
-        //if same student tries to sign up for same class and section, don't allow it
-//        if(dbHelper.isInClassExist(student.getEmail(), strClassName, strSectionName)){
-//            Log.println(Log.DEBUG, "log", "isInClass entry already exist");
-//            //TODO: show dialog saying this class and section already exist
-//            return;
-//        }
-
-        Classes classes = new Classes(strClassName, strSectionName);
+        Classes classes = new Classes(strClassName, strSectionName, classLocation, classDay, false);
         IsInClass isInClass = new IsInClass(student.getEmail(), strClassName, strSectionName);
 
         //get the classes => will call either onGetClassesSuccess or onGetClassesFailure vv
+        //will create class tuple if it does not already exist
         firebaseHelper.getClasses(this, classes);
 
-//        //insert into isInClass a row saying this student is in this class
-//        dbHelper.createIsInClass(isInClass);
-//        Log.println(Log.DEBUG, "log", "Class created");
-//        //TODO: show dialog saying class was successfully created
+        //will add isInClass tuple if it does not already exist
+        firebaseHelper.getisInClasses(this, isInClass);
+
+        Log.println(Log.DEBUG, "log", "Class created");
+        //TODO: show dialog saying class was successfully created
     }
 
     @Override //Implementing FirebaseClassesInterface OnSuccess function
@@ -108,10 +103,40 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         if(!classExists) {
             firebaseHelper.registerClass(classes);
         }
+        //if class exists all we want to do is add an entry in the isInClass table
     }
 
     @Override  //Implementing FirebaseClassesInterface OnFailure function
     public void onGetClassesFailed(Task<QuerySnapshot> task) {
+
+    }
+
+    @Override //Implementing FirebaseClassesInterface function
+    public void onGetIsInClassesSuccess(Task<QuerySnapshot> task, IsInClass isInClass){
+        //called if we pulled isInclasses documents successfully from firebase firestore
+        boolean isInClassExists = false;
+
+        //check if current isInClass tuple already exist
+        for(QueryDocumentSnapshot current : task.getResult()) {
+            if(current.get("email").equals(isInClass.getEmail()) &&
+               current.get("className").equals(isInClass.getClassName()) &&
+               current.get("sectionNumber").equals(isInClass.getSectionNumber())) {
+                isInClassExists = true;
+            }
+        }
+
+        //if same student tries to sign up for same class and section, don't allow it
+        if(isInClassExists){
+            Log.println(Log.DEBUG, "log", "isInClass entry already exist");
+            //TODO: show dialog saying this class and section already exist
+        }else {
+            //if student is not registered for this class, we add the entry
+            firebaseHelper.registerIsInClass(isInClass);
+        }
+    }
+
+    @Override //Implementing FirebaseClassesInterface function
+    public void onGetIsInClassesFailed(Task<QuerySnapshot> task){
 
     }
 }

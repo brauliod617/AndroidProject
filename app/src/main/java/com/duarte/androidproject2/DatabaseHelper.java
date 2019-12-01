@@ -268,6 +268,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 /********************************END OF CREATE CS DB***********************************************/
 
-
-
 }

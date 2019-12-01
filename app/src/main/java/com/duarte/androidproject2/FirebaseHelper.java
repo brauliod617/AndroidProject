@@ -19,7 +19,8 @@ public class FirebaseHelper {
     private FirebaseFirestore db;
 
     private final String studentCollection = "students";
-    private final String classesCollection = "Classes";
+    private final String classesCollection = "classes";
+    private final String isInClassCollection = "isInClass";
 
     FirebaseHelper(){
         db = FirebaseFirestore.getInstance();
@@ -28,7 +29,7 @@ public class FirebaseHelper {
 /********************************STUDENT REGISTRATION**********************************************/
 
     public void registerStudentFirebase(Student student){
-        //TODO: changed to Object havnt tested it, might cause problems
+        //TODO: changed to Object have not tested it, might cause problems
         Map<String, Object> mapStudent = new HashMap<>();
 
         mapStudent.put("userName", student.getUserName());
@@ -118,7 +119,7 @@ public class FirebaseHelper {
         mapClass.put("classLocation", classes.getClassLocation());
         mapClass.put("className", classes.getClassName());
         mapClass.put("notification", classes.getNotification());
-        mapClass.put("sectionNumer", classes.getSectionNumber());
+        mapClass.put("sectionNumber", classes.getSectionNumber());
 
         db.collection(classesCollection)
                 .add(mapClass)
@@ -139,7 +140,8 @@ public class FirebaseHelper {
                 });
     }
 
-    public void getClasses(final FirebaseClassesInterface firebaseClassesInterface,final Classes classes){
+    public void getClasses(final FirebaseClassesInterface firebaseClassesInterface,
+                           final Classes classes){
         db.collection(classesCollection).
                 get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -154,9 +156,56 @@ public class FirebaseHelper {
                         }
                     }
                 });
+    }
 
+/********************************END OF CLASSES****************************************************/
+
+/********************************IS IN CLASSES*****************************************************/
+
+    public void registerIsInClass(IsInClass isInClass) {
+        Map<String, Object> mapIsInClass = new HashMap<>();
+
+        mapIsInClass.put("email", isInClass.getEmail());
+        mapIsInClass.put("className", isInClass.getClassName());
+        mapIsInClass.put("sectionNumber", isInClass.getSectionNumber());
+
+        db.collection(isInClassCollection)
+                .add(mapIsInClass)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        //TODO: add dialog with success message, might have to use interface, see
+                        //      validate student for example
+                        Log.d("Firebase", "DocumentSnapshot of isInClass added with ID: "
+                                + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Firebase", "Error adding student document", e);
+                    }
+                });
+    }
+
+    public void getisInClasses(final FirebaseClassesInterface firebaseClassesInterface,
+                               final IsInClass isInClass){
+        db.collection(isInClassCollection).
+                get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        //see validateStudentLogin's comments for explanation
+                        //functions implemented in Homepage
+                        if(task.isSuccessful()){
+                            firebaseClassesInterface.onGetIsInClassesSuccess(task, isInClass);
+                        }else {
+                            firebaseClassesInterface.onGetIsInClassesFailed(task);
+                        }
+                    }
+                });
     }
 
 
-/********************************END OF CLASSES****************************************************/
+/********************************END OF IS IN CLASSES**********************************************/
 }
