@@ -59,11 +59,20 @@ public class Register extends AppCompatActivity {
         //      Validate username and or email does not already exist,
         //      This will depend on what we choose to use for our credentials.
         //       Validate the input make sure it is what we expect.
+<<<<<<< HEAD
         Log.println(Log.DEBUG, "Log", "Created Registration" + email);
         if (!validateForm()) {
             return;
         }
 
+=======
+        name = findViewById(R.id.register_user);
+        email = findViewById(R.id.register_email);
+        password = findViewById(R.id.register_password);
+        confirmPassword = findViewById(R.id.register_password_confirm);
+
+        student = new Student(name.getText().toString() , email.getText().toString(), password.getText().toString());
+>>>>>>> master
 
         //TODO: Validate student registration does not already exist before creating a new one
         //      Throwing an unhandled expressin right now

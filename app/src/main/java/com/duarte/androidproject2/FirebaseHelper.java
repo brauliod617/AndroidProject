@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,13 +30,16 @@ public class FirebaseHelper {
 
 /********************************STUDENT REGISTRATION**********************************************/
 
-    public void registerStudentFirebase(Student student){
+    public void registerStudentFirebase(final Student student){
         //TODO: changed to Object have not tested it, might cause problems
         Map<String, Object> mapStudent = new HashMap<>();
 
         mapStudent.put("userName", student.getUserName());
         mapStudent.put("email", student.getEmail());
         mapStudent.put("password", student.getPassWord());
+        mapStudent.put("classesList", student.getClassesList());
+
+        //TODO check if student exists before registering
 
         db.collection(studentCollection)
                 .add(mapStudent)
@@ -46,12 +50,14 @@ public class FirebaseHelper {
                         //      validate student for example
                         Log.d("Firebase", "DocumentSnapshot of student added with ID: "
                                 + documentReference.getId());
+                        Log.println(Log.DEBUG, "Firebase", "Register success");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("Firebase", "Error adding student document", e);
+                        Log.println(Log.DEBUG, "Firebase", "Register Failure");
                     }
                 });
     }
@@ -110,6 +116,28 @@ public class FirebaseHelper {
                     }
                 });
     }
+
+    public void addClassToStudentClassList(Student student){
+        Map<String, Object> classList = new HashMap<>();
+        classList.put("classesList", student.getClassesList());
+
+        db.collection(studentCollection).document(student.getDocId())
+                .set(classList, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Firebase", "ClassesList successfully update");
+                        Log.println(Log.DEBUG, "Firebase", "ClassesList successfully update");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Firebase", "ClassesList update failed");
+                        Log.println(Log.DEBUG, "Firebase", "ClassesList update failed");
+                    }
+                });
+    }
 /********************************END OF STUDENT REGISTRATION***************************************/
 
 /********************************CLASSES***********************************************************/
@@ -140,7 +168,7 @@ public class FirebaseHelper {
                     }
                 });
     }
-
+    //used for creating class
     public void getClasses(final FirebaseClassesInterface firebaseClassesInterface,
                            final Classes classes){
         db.collection(classesCollection).
@@ -154,6 +182,24 @@ public class FirebaseHelper {
                             firebaseClassesInterface.onGetClassesSuccess(task, classes);
                         }else {
                             firebaseClassesInterface.onGetClassesFailed(task);
+                        }
+                    }
+                });
+    }
+
+    //used for loading classes student is registerd in
+    public void loadClasses(final FirebaseClassesInterface firebaseClassesInterface) {
+        db.collection(classesCollection).
+                get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        //see validateStudentLogin's comments for explanation
+                        //functions implemented in Homepage
+                        if(task.isSuccessful()){
+                            firebaseClassesInterface.onLoadClassesSuccess(task);
+                        }else {
+                            firebaseClassesInterface.onLoadClassesFailed(task);
                         }
                     }
                 });
@@ -190,7 +236,7 @@ public class FirebaseHelper {
     }
 
     public void getisInClasses(final FirebaseClassesInterface firebaseClassesInterface,
-                               final IsInClass isInClass){
+                               final IsInClass isInClass, final Classes classes){
         db.collection(isInClassCollection).
                 get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -199,7 +245,7 @@ public class FirebaseHelper {
                         //see validateStudentLogin's comments for explanation
                         //functions implemented in Homepage
                         if(task.isSuccessful()){
-                            firebaseClassesInterface.onGetIsInClassesSuccess(task, isInClass);
+                            firebaseClassesInterface.onGetIsInClassesSuccess(task, isInClass, classes);
                         }else {
                             firebaseClassesInterface.onGetIsInClassesFailed(task);
                         }
