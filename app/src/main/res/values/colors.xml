@@ -5,6 +5,7 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorPurple">#494CA2</color>
     <color name="colorTransparent">#00008577</color>
+    <color name="colorBlueText">#759BFA</color>
 
     <!-- deep purples -->
     <color name="material_deep_purple_50">#EDE7F6</color>

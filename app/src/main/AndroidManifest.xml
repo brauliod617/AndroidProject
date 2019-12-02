@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".QuestionsPage"></activity>
         <activity
             android:name=".Register"
             android:parentActivityName=".MainActivity">
