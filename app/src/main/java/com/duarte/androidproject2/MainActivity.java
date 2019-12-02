@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     String strEmail;
     String strPassword;
     Student student;
+
+    Button loginButton;
 
     //DatabaseHelper dbHelper;
     FirebaseHelper firebaseHelper;
@@ -57,12 +61,21 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
 
         firebaseHelper = new FirebaseHelper();
         //check if user has entered a username and password
-        if(strEmail.isEmpty() || strPassword.isEmpty()){
-            //TODO: create dialog telling user to enter username and password
+        if(strEmail.isEmpty()){
+            //TODO: create dialog telling user to enter username
             //      if we have time change the color of missing text to red to help user find error
-            Log.println(Log.DEBUG, "Log","missing password or username");
+            Toast.makeText(MainActivity.this.getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+            Log.println(Log.DEBUG, "Log","missing username");
             return;
         }
+        if(strPassword.isEmpty()){
+            //TODO: create dialog telling user to enter password
+            //      if we have time change the color of missing text to red to help user find error
+            Toast.makeText(MainActivity.this.getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+            Log.println(Log.DEBUG, "Log","missing password");
+            return;
+        }
+
 
         firebaseHelper.validateStudentLogin(this);
 
