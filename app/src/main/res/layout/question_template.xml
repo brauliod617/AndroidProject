@@ -29,6 +29,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="0dp"
+        android:contentDescription="@string/userlogo"
         android:scaleX=".6"
         android:scaleY=".6"
         app:srcCompat="@drawable/userlogo" />
@@ -43,7 +44,7 @@
         android:layout_marginStart="71dp"
         android:layout_marginLeft="71dp"
         android:layout_marginTop="6dp"
-        android:text="John Doe"
+        android:text="@string/john_doe"
         android:textColor="@color/colorBlueText" />
 
     <TextView
@@ -56,7 +57,7 @@
         android:layout_marginStart="71dp"
         android:layout_marginLeft="71dp"
         android:layout_marginTop="25dp"
-        android:text="Question Title"
+        android:text="@string/question_title"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp" />
 
@@ -70,12 +71,13 @@
         android:layout_marginStart="29dp"
         android:layout_marginLeft="29dp"
         android:layout_marginTop="82dp"
+        android:contentDescription="@string/commentcloud"
         android:scaleX="1.2"
         android:scaleY="1.2"
         app:srcCompat="@drawable/ic_cloud" />
 
     <TextView
-        android:id="@+id/txvComments"
+        android:id="@+id/txvCommentNumbers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txvQuestionTitle"
@@ -85,7 +87,7 @@
         android:layout_marginLeft="71dp"
         android:layout_marginTop="23dp"
         android:layout_marginBottom="32dp"
-        android:text="2 comments"
+        android:text="@string/_2_comments"
         android:textColor="@color/colorPrimaryDark" />
 
 </RelativeLayout>
