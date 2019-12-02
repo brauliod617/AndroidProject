@@ -190,8 +190,32 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
+
 /*
-public class MainActivity extends AppCompatActivity implements FirebaseInterface{
+package com.duarte.androidproject2;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+
+public class MainActivity extends AppCompatActivity implements FirebaseInterface {
 
 //  TODO: Add forget password feature
 
@@ -225,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     }
 
     //Respond to Onclick from "create an account"
-    public void register(View view){
+    public void register(View view) {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
 
@@ -236,12 +260,12 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     //Respond to OnClick from "Login"
     public void login(View view) {
 
-        if(Global.debug){
+        if (Global.debug) {
 //            strEmail = "Juyeong_Seo@student.uml.edu";
 //            strPassword = "tjtjtj";
-              strEmail = "Test@yahoo.com";
-              strPassword = "Duarte";
-        }else {
+            strEmail = "Test@yahoo.com";
+            strPassword = "Duarte";
+        } else {
             txvEmail = findViewById(R.id.main_User);
             txvPassword = findViewById(R.id.main_Password);
             strEmail = txvEmail.getText().toString();
@@ -250,18 +274,14 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
 
         firebaseHelper = new FirebaseHelper();
         //check if user has entered a username and password
-        if(strEmail.isEmpty()){
-            //TODO: create dialog telling user to enter username
-            //      if we have time change the color of missing text to red to help user find error
+        if (strEmail.isEmpty()) {
             Toast.makeText(MainActivity.this.getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-            Log.println(Log.DEBUG, "Log","missing username");
+            Log.println(Log.DEBUG, "Log", "missing username");
             return;
         }
-        if(strPassword.isEmpty()){
-            //TODO: create dialog telling user to enter password
-            //      if we have time change the color of missing text to red to help user find error
+        if (strPassword.isEmpty()) {
             Toast.makeText(MainActivity.this.getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-            Log.println(Log.DEBUG, "Log","missing password");
+            Log.println(Log.DEBUG, "Log", "missing password");
             return;
         }
 
@@ -270,47 +290,71 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
 
     }//end of login(View view)
 
+    //sign in existing users
+    private void signIn(String email, String password) {
 
-    @Override
-    public void onSuccess(Task<QuerySnapshot> task){
-        for (QueryDocumentSnapshot document : task.getResult()) {
-            HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
-            if(current.get("email").equals(strEmail)){
-                if(current.get("password").equals(strPassword)) {
-                    student = new Student(current);
-                    Log.println(Log.DEBUG, "log", "Login successful");
-                    Intent intent = new Intent(this, HomePage.class);
-                    Bundle bundle = new Bundle();
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(String.valueOf(Log.DEBUG), "signInWithEmail:" + task.isSuccessful());
 
-                    //We pass student obj to following activity so we know which user is logged in
-                    bundle.putSerializable("objStudent", student);
-                    intent.putExtras(bundle);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(String.valueOf(Log.DEBUG), "signInWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, R.string.auth_failed,
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
 
-                    //start HomePage activity
-                    startActivity(intent);
+        @Override
+        public void onSuccess (Task < QuerySnapshot > task) {
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
+                if (current.get("email").equals(strEmail)) {
+                    if (current.get("password").equals(strPassword)) {
+                        student = new Student(current);
+                        Log.println(Log.DEBUG, "log", "Login successful");
+                        Intent intent = new Intent(this, HomePage.class);
+                        Bundle bundle = new Bundle();
 
-                }else {
-                    Log.println(Log.DEBUG, "Log","Login was not successful");
-                    return;
+                        //We pass student obj to following activity so we know which user is logged in
+                        bundle.putSerializable("objStudent", student);
+                        intent.putExtras(bundle);
+
+                        //start HomePage activity
+                        startActivity(intent);
+
+                    } else {
+                        Log.println(Log.DEBUG, "Log", "Login was not successful");
+                        return;
+                    }
+                    break;
                 }
-                break;
+            }
+        }
+
+        @Override
+        public void onFailed (Task < QuerySnapshot > data) {
+            Log.println(Log.DEBUG, "Log", "ERROR has occurred getting student");
+        }
+
+        public void updateUI (FirebaseUser account){
+            if (account != null) {
+                Toast.makeText(this, "Signed In successfully", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(this, HomePage.class));
+            } else {
+                Toast.makeText(this, "Didn't sign in", Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    @Override
-    public void onFailed(Task<QuerySnapshot> data) {
-        Log.println(Log.DEBUG, "Log","ERROR has occurred getting student");
-    }
-
-    public void  updateUI(FirebaseUser account){
-        if(account != null){
-            Toast.makeText(this,"Signed In successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,HomePage.class));
-        }else {
-            Toast.makeText(this,"Didn't sign in",Toast.LENGTH_LONG).show();
-        }
-    }
-}
 
  */

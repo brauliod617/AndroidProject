@@ -2,13 +2,20 @@ package com.duarte.androidproject2;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -21,6 +28,9 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     ClassesAdpter adpter;
     FirebaseHelper firebaseHelper;
 
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -31,6 +41,10 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
          adpter = attachAdapterToList();
          firebaseHelper = new FirebaseHelper();
          //load all current class and populate into class list
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        initNavigationDrawer();
     }
 
     //When user clicks on "Create class button"
@@ -139,4 +153,56 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     public void onGetIsInClassesFailed(Task<QuerySnapshot> task){
 
     }
+
+
+    public void initNavigationDrawer() {
+
+        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                int id = menuItem.getItemId();
+
+                switch (id){
+                    case R.id.home:
+                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.settings:
+                        Toast.makeText(getApplicationContext(),"Settings",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.notification:
+                        Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.logout:
+                        finish();
+
+                }
+                return true;
+            }
+        });
+        View header = navigationView.getHeaderView(0);
+        TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
+        //TODO: need to change header with the user id/email
+        tv_email.setText("Juyeong_Seo@student.uml.edu");
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){
+
+            @Override
+            public void onDrawerClosed(View v){
+                super.onDrawerClosed(v);
+            }
+
+            @Override
+            public void onDrawerOpened(View v) {
+                super.onDrawerOpened(v);
+            }
+        };
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+    }
 }
+
