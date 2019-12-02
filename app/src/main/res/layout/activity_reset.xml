@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/rEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginRight="74dp"
+        android:background="@drawable/ic_field"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:padding="20dp"
+        android:text="@string/forgot_password_msg"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:fontFamily="@font/roboto"
+        app:layout_constraintBottom_toTopOf="@+id/rEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/rPasswordMSG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginRight="128dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="RESET PASSWORD"
+        android:padding="10dp"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        android:textColor="#3F51B5"
+        android:textSize="12sp"
+        app:fontFamily="@font/roboto"
+        app:layout_constraintTop_toBottomOf="@+id/btn_reset_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_reset_password"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginRight="74dp"
+        android:background="@drawable/ic_buttonpurple"
+        android:text="@string/btn_reset_password"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rEmail"
+        android:focusable="true" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:contentDescription="@string/app_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_appicon" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_name"
+        android:textColor="#070707"
+        app:fontFamily="@font/roboto"
+        app:layout_constraintBottom_toTopOf="@+id/main_User"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.192" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

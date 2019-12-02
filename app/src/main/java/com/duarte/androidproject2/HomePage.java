@@ -171,7 +171,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 /**************************************End Of Add Class********************************************/
 
 /**************************************Load Classes************************************************/
-    //Load all classes student is registerd for at beginning of app
+    //Load all classes student is registered for at beginning of app
     public void loadClasses(){
         firebaseHelper.loadClasses(this);
     }
@@ -242,12 +242,14 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
                         Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
                         break;
-                    case R.id.settings:
+                    case R.id.reset_password:
                         Toast.makeText(getApplicationContext(),"Settings",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.notification:
                         Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
+                        resetPassword();
+                        finish();
                         break;
                     case R.id.logout:
                         logOut();
@@ -283,6 +285,14 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         FirebaseAuth.getInstance().signOut();
 
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private void resetPassword() {
+        FirebaseAuth.getInstance().signOut();
+
+        Intent intent = new Intent(getApplicationContext(),ResetActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

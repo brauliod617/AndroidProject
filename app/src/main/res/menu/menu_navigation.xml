@@ -8,8 +8,8 @@
             android:title="Home"
             android:icon="@drawable/ic_home"/>
         <item
-            android:id="@+id/settings"
-            android:title="Settings"
+            android:id="@+id/reset_password"
+            android:title="Reset Passowrd"
             android:icon="@drawable/ic_setting"/>
         <item
             android:id="@+id/notification"
