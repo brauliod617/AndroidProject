@@ -16,23 +16,27 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
+    private static final String TAG = Register.class.getSimpleName();
 
-    TextView name;
-    TextView email;
-    TextView password;
-    TextView confirmPassword;
-    Button registerButton;
+    private TextView name;
+    private TextView email;
+    private TextView password;
+    private TextView confirmPassword;
+    private Button registerButton;
 
-    Student student;
+    private Student student;
     FirebaseHelper firebaseHelper;
 
 
     // Initialize Firebase objects
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +51,47 @@ public class Register extends AppCompatActivity {
         registerButton = findViewById(R.id.register_button);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
+            public void onClick(View v) {
                 processRegistration();
             }
         });
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+        mRef = FirebaseDatabase.getInstance().getReference("user");
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(String.valueOf(Log.DEBUG), "onAuthStateChanged:signed_in:" + user.getUid());
+
+                    // Send user to main activity
+                    Intent intent = new Intent(Register.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                updateUI(user);
+            }
+        };
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAuthStateListener != null) {
+            mAuth.removeAuthStateListener(mAuthStateListener);
+        }
     }
 
     public void processRegistration(){
@@ -59,21 +100,20 @@ public class Register extends AppCompatActivity {
         //      Validate username and or email does not already exist,
         //      This will depend on what we choose to use for our credentials.
         //       Validate the input make sure it is what we expect.
-        Log.println(Log.DEBUG, "Log", "Created Registration" + email);
+        Log.d(TAG, "Create Registration" + email);
         if (!validateForm()) {
             return;
         }
 
-
         //TODO: Validate student registration does not already exist before creating a new one
-        //      Throwing an unhandled expressin right now
+        //      Throwing an unhandled expression right now
         //      android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: registration.email (code 1555)
         //databaseHelper = new DatabaseHelper(getApplicationContext());
         //databaseHelper.createStudentRegistration(student);
 
-        firebaseHelper = new FirebaseHelper();
+        //firebaseHelper = new FirebaseHelper();
 
-        createAccount(email.getText().toString(), password.getText().toString());
+        createAccount(email.getText().toString().trim(), password.getText().toString().trim());
 
         firebaseHelper.registerStudentFirebase(student);
         Log.println(Log.DEBUG, "Log", "Created Registration");
@@ -81,14 +121,14 @@ public class Register extends AppCompatActivity {
     }
 
     // Create a new account
-    private void createAccount(String email, String password) {
+    private void createAccount(final String nEmail, final String nPassword) {
 
         // Create user with email and password
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(nEmail, nPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(String.valueOf(Log.DEBUG), "createUserWithEmail:onComplete:" + task.isSuccessful());
+                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
                         // If sign in fails, display a message to the user.
                         // If sign in succeeds the auth state listener will be notified
@@ -98,7 +138,11 @@ public class Register extends AppCompatActivity {
                                     "Welcome " + mAuth.getCurrentUser().getEmail(),
                                     Toast.LENGTH_SHORT).show();
                             // Create new user
-                            firebaseHelper.registerStudentFirebase(student);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            //firebaseHelper.registerStudentFirebase(student);
+                            student = new Student(name.getText().toString() , nEmail, nPassword);
+                            mRef.child(user.getUid()).setValue(student);
+
                         } else {
                             Toast.makeText(Register.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
@@ -108,11 +152,18 @@ public class Register extends AppCompatActivity {
                 });
     }
 
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
+
+        } else {
+
+        }
+    }
     private boolean validateForm() {
         boolean isValid = true;
 
         // Validate Name, Email, and Password
-        String sName = name.getText().toString();
+        String sName = name.getText().toString().trim();
         if (TextUtils.isEmpty(sName)) {
             name.setError(getString(R.string.error_field_required));
             isValid = false;
@@ -120,7 +171,7 @@ public class Register extends AppCompatActivity {
             name.setError(null);
         }
 
-        String sEmail = email.getText().toString();
+        String sEmail = email.getText().toString().trim();
         if (TextUtils.isEmpty(sEmail)) {
             email.setError(getString(R.string.error_field_required));
             isValid = false;
@@ -128,9 +179,17 @@ public class Register extends AppCompatActivity {
             email.setError(null);
         }
 
-        String sPassword = password.getText().toString();
+        String sPassword = password.getText().toString().trim();
         if (TextUtils.isEmpty(sPassword)) {
             password.setError(getString(R.string.error_field_required));
+            isValid = false;
+        } else {
+            password.setError(null);
+        }
+
+        String sConfirmPassword = confirmPassword.getText().toString().trim();
+        if (!sConfirmPassword.equals(sPassword)) {
+            confirmPassword.setError(getString(R.string.error_incorrect_password));
             isValid = false;
         } else {
             password.setError(null);
