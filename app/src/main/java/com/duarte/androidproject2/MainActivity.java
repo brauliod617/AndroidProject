@@ -126,9 +126,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // @Todo
-        //showProgressDialog();
-
         // Sign in user with email and password
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -148,16 +145,11 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         }
 
-                        // @Todo
-                        //hideProgressDialog();
                     }
                 });
     }
 
-    // @Todo
     private void updateUI(FirebaseUser user) {
-        // @Todo
-        //hideProgressDialog();
         if (user != null) {
 
         } else {
@@ -165,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // @Todo
     private boolean validateForm() {
         boolean valid = true;
 
@@ -236,8 +227,12 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
 
         mAuth = FirebaseAuth.getInstance();
+=======
+        firebaseHelper = new FirebaseHelper();
+>>>>>>> 7ed8b5ad65ca34045643ad3b4313f4bb66b298fc
     }
 
     @Override
@@ -252,9 +247,6 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     public void register(View view) {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
-
-        //TODO: Make it so it starts Homepage with registerd student class,
-        //      See login(View view) for example
     }
 
     //Respond to OnClick from "Login"
@@ -272,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
             strPassword = txvPassword.getText().toString();
         }
 
-        firebaseHelper = new FirebaseHelper();
+
         //check if user has entered a username and password
         if (strEmail.isEmpty()) {
             Toast.makeText(MainActivity.this.getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -293,6 +285,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     //sign in existing users
     private void signIn(String email, String password) {
 
+<<<<<<< HEAD
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -328,6 +321,26 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
                         //We pass student obj to following activity so we know which user is logged in
                         bundle.putSerializable("objStudent", student);
                         intent.putExtras(bundle);
+=======
+    @Override
+    public void onSuccess(Task<QuerySnapshot> task){
+        for (QueryDocumentSnapshot document : task.getResult()) {
+            HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
+            if(current.get("email").equals(strEmail)){
+                if(current.get("password").equals(strPassword)) {
+                    student = new Student(current);
+                    student.setDocId(document.getId());
+                    Log.println(Log.DEBUG, "log", "Login successful");
+                    Intent intent = new Intent(this, HomePage.class);
+                    Bundle bundle = new Bundle();
+
+                    //We pass student obj to following activity so we know which user is logged in
+                    bundle.putSerializable("objStudent", student);
+                    intent.putExtras(bundle);
+
+                    //start HomePage activity
+                    startActivity(intent);
+>>>>>>> 7ed8b5ad65ca34045643ad3b4313f4bb66b298fc
 
                         //start HomePage activity
                         startActivity(intent);
