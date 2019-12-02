@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
                 if(current.get("password").equals(strPassword)) {
                     student = new Student(current);
                     student.setDocId(document.getId());
+
                     Log.println(Log.DEBUG, "log", "Login successful");
                     Intent intent = new Intent(this, HomePage.class);
                     Bundle bundle = new Bundle();

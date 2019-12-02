@@ -1,5 +1,6 @@
 package com.duarte.androidproject2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     ClassesAdpter adpter;
     FirebaseHelper firebaseHelper;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -28,13 +30,13 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
          //get student object sent over from login or register page
          student = (Student) getIntent().getSerializableExtra("objStudent");
          adpter = attachAdapterToList();
+         adpter.setCreateDialogInterface(this);
          firebaseHelper = new FirebaseHelper();
 
          //load all current class and populate into class list
         loadClasses();
     }
 /**************************************Add Class***************************************************/
-
     //When user clicks on "Create class button", will bring up addclass dialog wait
     //wait for user to press ok or cancel, if user press dialog closes and nothing happens
     //if user presses ok the next function is called
@@ -146,7 +148,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     public void onGetIsInClassesFailed(Task<QuerySnapshot> task){
         //TODO:Figure out what to do here
     }
-
 /**************************************End Of Add Class********************************************/
 
 /**************************************Load Classes************************************************/
@@ -189,12 +190,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         }
     }
 
-/**************************************End Of Load Classes*****************************************/
-
-
-
-
-
     //Used to attach adapter to listview
     public ClassesAdpter attachAdapterToList(){
         ArrayList<Classes> classesArrayList = new ArrayList<>();
@@ -204,5 +199,19 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         ListView listView = findViewById(R.id.classes_list_view);
         listView.setAdapter(adpter);
         return adpter;
+    }
+/**************************************End Of Load Classes*****************************************/
+
+
+    //CreateDialogInterface method implementation
+    @Override
+    public void onClassClicked(Classes selectedClass){
+        Intent intent = new Intent(this, QuestionsPage.class);
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable("selectedClass", selectedClass);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 }
