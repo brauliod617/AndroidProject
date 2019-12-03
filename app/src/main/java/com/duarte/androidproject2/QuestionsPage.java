@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -23,6 +24,8 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
     String className;
     FirebaseHelper firebaseHelper;
 
+    TextView txvClassTitleForNavBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +35,16 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
         firebaseHelper = new FirebaseHelper();
 
         adapter = attachAdapterToList();
+        adapter.setLoadQuestionInteface(this);
 
         className = getIntent().getExtras().get("classOfQuestion").toString();
         firebaseHelper.downloadQuestions(this);
+
+        txvClassTitleForNavBar = findViewById(R.id.textViewnav5);
+
+        //TODO: validate get("classOfQuestion) is not null and not bigger then like 10 chars or
+        //      something reasonable
+        txvClassTitleForNavBar.setText(getIntent().getExtras().get("classOfQuestion").toString());
     }
 
     public QuestionsAdapter attachAdapterToList(){
@@ -80,6 +90,19 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
     @Override
     public void questionDownloadFailed(Exception e){
         e.printStackTrace();
+    }
+
+    //when user clicks on a question
+    @Override
+    public void onQuestionClicked(Questions currentQuestion){
+        Intent intent = new Intent(this, ReplyActivity.class);
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable("question", currentQuestion);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+        //start reply activity with current question
     }
 
 

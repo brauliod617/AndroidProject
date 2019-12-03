@@ -1,8 +1,9 @@
 package com.duarte.androidproject2;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Questions {
+public class Questions  implements Serializable {
     private String opEmail;
     private String questionTitle;
     private int numberOfComments;

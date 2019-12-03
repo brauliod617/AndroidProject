@@ -1,6 +1,7 @@
 package com.duarte.androidproject2;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.List;
 public class QuestionsAdapter extends ArrayAdapter<Questions> {
     private Context context;
     private List<Questions> questionsList;
+    LoadQuestionInteface loadQuestionInteface;
 
     public QuestionsAdapter(@NonNull Context context, ArrayList<Questions> questionsList) {
         super(context, 0, questionsList);
@@ -35,7 +37,7 @@ public class QuestionsAdapter extends ArrayAdapter<Questions> {
                     , parent, false);
         }
 
-        Questions currentQuestion = questionsList.get(position);
+        final Questions currentQuestion = questionsList.get(position);
 
         ImageView background = listItem.findViewById(R.id.imvQuestionBG);
         background.setImageResource(R.drawable.ic_questionsbg);
@@ -59,10 +61,22 @@ public class QuestionsAdapter extends ArrayAdapter<Questions> {
             txvCommentNumber.setText("");
         }
 
+        //Add on click listener to each question Item on UI
+        //calls function in QuestionPage
+        background.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Log.println(Log.DEBUG, "Log","List Item Clicked");
+                loadQuestionInteface.onQuestionClicked(currentQuestion);
+            }
+        });
 
         return listItem;
 
     }
 
+    public void setLoadQuestionInteface(LoadQuestionInteface loadQuestionInteface){
+        this.loadQuestionInteface = loadQuestionInteface;
+    }
 
 }

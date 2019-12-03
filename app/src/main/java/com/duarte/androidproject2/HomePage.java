@@ -57,6 +57,8 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
+        //TODO: it can take a few seconds or minutes to load classes, maybe we show Toast saying
+        //  its loading or a loading wheel, until loadclasses() is called
         firebaseHelper.getStudentFirebase(this, firebaseUser.getEmail());
     }
 /**************************************Add Class***************************************************/
