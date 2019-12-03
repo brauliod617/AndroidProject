@@ -333,10 +333,8 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-<<<<<<< HEAD
-/********************************End of Navigation*************************************************/
-=======
 
->>>>>>> Change-to-firebase
+/********************************End of Navigation*************************************************/
+
 }
 
