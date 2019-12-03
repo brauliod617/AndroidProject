@@ -42,7 +42,7 @@
     <string name="drawer_close">Close</string>
 
     <!-- Reset Password -->
-    <string name="forgot_password_msg">We need your registered Email Id to send you password reset instructions.</string>
+    <string name="forgot_password_msg">We need your registered email Id to send you password reset instructions.</string>
     <string name="btn_reset_password">Reset Password</string>
     <string name="back"><![CDATA[<< Back]]></string>
 

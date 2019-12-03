@@ -243,13 +243,13 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.reset_password:
-                        Toast.makeText(getApplicationContext(),"Settings",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_SHORT).show();
+                        resetPassword();
+                        //finish();
                         break;
                     case R.id.notification:
                         Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
-                        resetPassword();
-                        finish();
                         break;
                     case R.id.logout:
                         logOut();
@@ -290,8 +290,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     }
 
     private void resetPassword() {
-        FirebaseAuth.getInstance().signOut();
-
         Intent intent = new Intent(getApplicationContext(),ResetActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
