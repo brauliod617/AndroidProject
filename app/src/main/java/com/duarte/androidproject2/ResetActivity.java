@@ -27,9 +27,9 @@ public class ResetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset);
 
-        edtEmail = (EditText) findViewById(R.id.rEmail);
-        btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
-        tBack = (TextView) findViewById(R.id.rBack);
+        edtEmail = findViewById(R.id.rEmail);
+        btnResetPassword = findViewById(R.id.btn_reset_password);
+        tBack = findViewById(R.id.rBack);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -40,7 +40,8 @@ public class ResetActivity extends AppCompatActivity {
                 String email = edtEmail.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter your email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter your email address!",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -49,9 +50,13 @@ public class ResetActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ResetActivity.this, "Check email to reset your password!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ResetActivity.this,
+                                            "Check email to reset your password!",
+                                            Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(ResetActivity.this, "Fail to send reset password email!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ResetActivity.this,
+                                            "Fail to send reset password email!",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
