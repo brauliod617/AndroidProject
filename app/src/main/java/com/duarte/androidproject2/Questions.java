@@ -1,25 +1,27 @@
 package com.duarte.androidproject2;
 
 public class Questions {
-    private String opUserName;
+    private String opEmail;
     private String questionTitle;
     private int numberOfComments;
+    private String content;
 
-    public Questions(String opUserName, String questionTitle, int numberOfComments) {
-        this.opUserName = opUserName;
+    public Questions(String opEmail, String questionTitle, String content) {
+        this.opEmail = opEmail;
         this.questionTitle = questionTitle;
-        this.numberOfComments = numberOfComments;
+        this.content = content;
+        this.numberOfComments = 0;
     }
 
     public Questions() {
     }
 
-    public String getOpUserName() {
-        return opUserName;
+    public String getOpEmail() {
+        return opEmail;
     }
 
-    public void setOpUserName(String opUserName) {
-        this.opUserName = opUserName;
+    public void setOpEmail(String opEmail) {
+        this.opEmail = opEmail;
     }
 
     public String getQuestionTitle() {
@@ -36,5 +38,13 @@ public class Questions {
 
     public void setNumberOfComments(int numberOfComments) {
         this.numberOfComments = numberOfComments;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

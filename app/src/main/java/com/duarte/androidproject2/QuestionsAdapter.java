@@ -44,7 +44,7 @@ public class QuestionsAdapter extends ArrayAdapter<Questions> {
         userLogo.setImageResource(R.drawable.userlogo);
 
         TextView txvUserName = listItem.findViewById(R.id.txvUserName);
-        txvUserName.setText(currentQuestion.getOpUserName());
+        txvUserName.setText(currentQuestion.getOpEmail());
 
         TextView txvQuestionTitle = listItem.findViewById(R.id.txvQuestionTitle);
         txvQuestionTitle.setText(currentQuestion.getQuestionTitle());
@@ -53,7 +53,12 @@ public class QuestionsAdapter extends ArrayAdapter<Questions> {
         commentCloud.setImageResource(R.drawable.ic_cloud);
 
         TextView txvCommentNumber = listItem.findViewById(R.id.txvCommentNumbers);
-        txvCommentNumber.setText(currentQuestion.getNumberOfComments() + R.string.comments);
+        if(currentQuestion.getNumberOfComments() > 0){
+            txvCommentNumber.setText( (currentQuestion.getNumberOfComments() + R.string.comments));
+        }else{
+            txvCommentNumber.setText("");
+        }
+
 
         return listItem;
 

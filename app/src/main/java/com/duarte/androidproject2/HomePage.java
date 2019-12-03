@@ -243,21 +243,21 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 /**************************************End Of Load Classes*****************************************/
 
 
-    //CreateDialogInterface method implementation
+    //when user clicks on a class
     @Override
     public void onClassClicked(Classes selectedClass){
         Intent intent = new Intent(this, QuestionsPage.class);
         Bundle bundle = new Bundle();
 
         bundle.putSerializable("selectedClass", selectedClass);
+        bundle.putSerializable("email", firebaseUser.getEmail());
         intent.putExtras(bundle);
 
         startActivity(intent);
     }
 
 
-
-
+/**************************************Navigation**************************************************/
     public void initNavigationDrawer() {
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
@@ -333,6 +333,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-
+/********************************End of Navigation*************************************************/
 }
 

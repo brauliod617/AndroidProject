@@ -22,6 +22,7 @@ public class FirebaseHelper {
     private final String studentCollection = "students";
     private final String classesCollection = "classes";
     private final String isInClassCollection = "isInClass";
+    private final String questionsCollection = "questions";
 
     FirebaseHelper(){
         db = FirebaseFirestore.getInstance();
@@ -112,35 +113,34 @@ public class FirebaseHelper {
     }
 
 
+    public void registerStudentEmailFirebase(final String email){
+        //TODO: changed to Object have not tested it, might cause problems
+        Map<String, Object> mapStudent = new HashMap<>();
 
-public void registerStudentEmailFirebase(final String email){
-    //TODO: changed to Object have not tested it, might cause problems
-    Map<String, Object> mapStudent = new HashMap<>();
+        mapStudent.put("email", email);
 
-    mapStudent.put("email", email);
+        //TODO check if student exists before registering
 
-    //TODO check if student exists before registering
-
-    db.collection(studentCollection)
-            .add(mapStudent)
-            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    //TODO: add dialog with success message, might have to use interface, see
-                    //      validate student for example
-                    Log.d("Firebase", "DocumentSnapshot of student added with ID: "
-                            + documentReference.getId());
-                    Log.println(Log.DEBUG, "Firebase", "Register success");
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w("Firebase", "Error adding student document", e);
-                    Log.println(Log.DEBUG, "Firebase", "Register Failure");
-                }
-            });
-}
+        db.collection(studentCollection)
+                .add(mapStudent)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        //TODO: add dialog with success message, might have to use interface, see
+                        //      validate student for example
+                        Log.d("Firebase", "DocumentSnapshot of student added with ID: "
+                                + documentReference.getId());
+                        Log.println(Log.DEBUG, "Firebase", "Register success");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Firebase", "Error adding student document", e);
+                        Log.println(Log.DEBUG, "Firebase", "Register Failure");
+                    }
+                });
+    }
 
     public void validateStudentLogin(final FirebaseInterface firebaseInterface,final String email){
         Log.println(Log.DEBUG, "Firebase", "STARTED");
@@ -300,6 +300,31 @@ public void registerStudentEmailFirebase(final String email){
                 });
     }
 
-
 /********************************END OF IS IN CLASSES**********************************************/
+
+/********************************QUESTION**********************************************************/
+    public void uploadQuestion(final QuestionInterface questionInterface, Questions questions){
+        Map<String, Object> questionsMap = new HashMap<>();
+
+        questionsMap.put("email", questions.getOpEmail());
+        questionsMap.put("title", questions.getQuestionTitle());
+        questionsMap.put("question", questions.getContent());
+
+        db.collection(questionsCollection)
+                .add(questions)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        questionInterface.questionPostedSuccessfully();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        questionInterface.questionPostedFailure();
+                    }
+                });
+    }
+
+/********************************END OF QUESTION***************************************************/
 }
