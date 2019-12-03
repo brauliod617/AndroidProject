@@ -12,4 +12,6 @@ public interface FirebaseClassesInterface {
 
     void onLoadClassesSuccess(Task<QuerySnapshot> task);
     void onLoadClassesFailed(Task<QuerySnapshot> task);
+
+    void onGetStudentTuple(Task<QuerySnapshot> task);
 }

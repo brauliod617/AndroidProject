@@ -32,14 +32,13 @@ public class Register extends AppCompatActivity {
     private TextView confirmPassword;
     private Button registerButton;
 
-    private Student student;
+    //private Student student;
     FirebaseHelper firebaseHelper;
 
 
     // Initialize Firebase objects
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    private DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,6 @@ public class Register extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        mRef = FirebaseDatabase.getInstance().getReference("user");
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -111,19 +109,9 @@ public class Register extends AppCompatActivity {
         if (!validateForm()) {
             return;
         }
-
-
-
-        student = new Student(name.getText().toString(), email.getText().toString(), password.getText().toString());
-
         //TODO: Validate student registration does not already exist before creating a new one
         //      Throwing an unhandled expression right now
         //      android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: registration.email (code 1555)
-        //databaseHelper = new DatabaseHelper(getApplicationContext());
-        //databaseHelper.createStudentRegistration(student);
-
-        //firebaseHelper = new FirebaseHelper();
-
 
         createAccount(email.getText().toString().trim(), password.getText().toString().trim());
 
@@ -151,8 +139,7 @@ public class Register extends AppCompatActivity {
                             // Create new user
                             FirebaseUser user = mAuth.getCurrentUser();
                             //firebaseHelper.registerStudentFirebase(student);
-                            student = new Student(name.getText().toString(), nEmail, nPassword);
-                            mRef.child(user.getUid()).setValue(student);
+
                         } else {
                             Toast.makeText(Register.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();

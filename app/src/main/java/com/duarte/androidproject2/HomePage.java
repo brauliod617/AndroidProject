@@ -27,33 +27,36 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity implements CreateDialogInterface,
         FirebaseClassesInterface{
+
     Student student;
+
     ClassesAdpter adpter;
     FirebaseHelper firebaseHelper;
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
 
-    private FirebaseAuth mAuth;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-         //get student object sent over from login or register page
-         student = (Student) getIntent().getSerializableExtra("objStudent");
          adpter = attachAdapterToList();
          firebaseHelper = new FirebaseHelper();
 
          //load all current class and populate into class list
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
 
-        //loadClasses();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        firebaseHelper.getStudentFirebase(this, firebaseUser.getEmail());
     }
 /**************************************Add Class***************************************************/
 
@@ -63,7 +66,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     public void openDialog(View view) {
     //https://stackoverflow.com/questions/30777753/how-to-get-the-data-from-dialogfragment-to-mainactivity-in-android
 
-        if(false){
+        if(Global.debug){
             Log.println(Log.DEBUG, "log", "Add class button pressed");
             Classes debugclasses = new Classes("DebugClass", "101",
                     "debug hall", "MWF", false);
@@ -83,7 +86,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
         Classes classes = new Classes(strClassName, strSectionName, classLocation, classDay,
                 false);
-        IsInClass isInClass = new IsInClass(student.getEmail(), strClassName, strSectionName);
+        IsInClass isInClass = new IsInClass(firebaseUser.getEmail(), strClassName, strSectionName);
 
         //get the classes => will call either onGetClassesSuccess or onGetClassesFailure vv
         //will create class tuple if it does not already exist
@@ -153,6 +156,22 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         }
     }
 
+    //Pull student tuple from firestore and populate student object with it
+    //we need it primarily for classes list
+    @Override
+    public void onGetStudentTuple(Task<QuerySnapshot> task){
+
+        for(QueryDocumentSnapshot current : task.getResult()){
+            if(current.get("email").equals(firebaseUser.getEmail())){
+                student = new Student( (HashMap<String, Object>) current.getData(), current.getId());
+            }
+        }
+
+        //now that we have loaded the student object and everything is okay,
+        //load classes
+        loadClasses();
+    }
+
     //for debug use only, make sure adapter is working
     public void populateClassesListViewDebug(ClassesAdpter adpter, Classes classes){
         adpter.add(classes);
@@ -212,9 +231,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     }
 
 /**************************************End Of Load Classes*****************************************/
-
-
-
 
 
     //Used to attach adapter to listview
