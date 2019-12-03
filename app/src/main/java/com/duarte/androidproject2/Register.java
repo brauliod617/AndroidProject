@@ -109,10 +109,7 @@ public class Register extends AppCompatActivity {
             return;
         }
 
-        name = findViewById(R.id.register_user);
-        email = findViewById(R.id.register_email);
-        password = findViewById(R.id.register_password);
-        confirmPassword = findViewById(R.id.register_password_confirm);
+
 
         student = new Student(name.getText().toString() , email.getText().toString(), password.getText().toString());
 
@@ -126,7 +123,6 @@ public class Register extends AppCompatActivity {
 
         createAccount(email.getText().toString().trim(), password.getText().toString().trim());
 
-        firebaseHelper.registerStudentFirebase(student);
         Log.println(Log.DEBUG, "Log", "Created Registration");
         super.onBackPressed();
     }
@@ -152,7 +148,12 @@ public class Register extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             //firebaseHelper.registerStudentFirebase(student);
                             student = new Student(name.getText().toString() , nEmail, nPassword);
+                            //firebaseHelper.registerStudentEmailFirebase(student.getEmail());
                             mRef.child(user.getUid()).setValue(student);
+
+                            //create a entry of student inside firebase firestore to be used in addclass
+                            //only register users email address, because its all we need
+
 
                         } else {
                             Toast.makeText(Register.this, R.string.auth_failed,
