@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
                 // Start the signup activity
                 Intent intent = new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
-//                finish();
+
             }
         });
     }
