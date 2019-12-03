@@ -1,15 +1,21 @@
 package com.duarte.androidproject2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,6 +30,8 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
 
     String strQuestionTitle;
     String strQuestion;
+
+    ImageButton btnBack;
 
     Bundle bundle;
 
@@ -43,6 +51,15 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
         edtQuestionTitle = findViewById(R.id.edtQuestionTitle);
         edtQuestion = findViewById(R.id.edtQuestion);
 
+        btnBack = findViewById(R.id.btn_back_to_forum);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
     }
 
     public void postQuestion(View view){
