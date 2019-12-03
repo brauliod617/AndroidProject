@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
+    tools:context=".AskQuestion">
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_marginTop="-5dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/nav_bar_background"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_navbarbg" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="54dp"
+            android:layout_height="56dp"
+            android:background="@color/colorTransparent"
+            android:contentDescription="@string/menu_icon"
+            app:srcCompat="@drawable/ic_navbarmenu" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/comp_3090"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/postBtn"
+            android:layout_width="50dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="340dp"
+            android:layout_marginLeft="340dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="350dp"
+            android:layout_marginRight="380dp"
+            android:background="@color/colorTransparent"
+            android:contentDescription="@string/notification_bell_nav_bar"
+            android:onClick="postQuestion"
+            android:text="@string/post"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:srcCompat="@drawable/ic_alerts" />
+    </com.google.android.material.navigation.NavigationView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/comp_3090"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/greyline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitCenter"
+            android:scaleX="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:srcCompat="@drawable/ic_greyline" />
+
+        <EditText
+            android:id="@+id/edtQuestionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="8dp"
+            android:hint="Question Title"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/greyline" />
+
+        <ImageView
+            android:id="@+id/greyline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitCenter"
+            android:scaleX="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtQuestionTitle"
+            app:srcCompat="@drawable/ic_greyline" />
+
+        <EditText
+            android:id="@+id/edtQuestion"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="top"
+            android:hint="Your question"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColorHint="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/greyline2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

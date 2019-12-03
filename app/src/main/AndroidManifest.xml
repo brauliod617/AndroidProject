@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".AskQuestion"></activity>
+        <activity android:name=".QuestionsPage" />
         <activity
             android:name=".Register"
             android:parentActivityName=".MainActivity">
@@ -30,7 +32,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".ResetActivity"
             android:parentActivityName=".MainActivity">
@@ -38,7 +39,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".ReplyActivity"
             android:parentActivityName=".MainActivity">

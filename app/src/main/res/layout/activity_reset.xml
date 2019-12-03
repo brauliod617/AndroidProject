@@ -60,10 +60,9 @@
         android:textColor="#3F51B5"
         android:textSize="12sp"
         app:fontFamily="@font/roboto"
-        app:layout_constraintTop_toBottomOf="@+id/btn_reset_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.591"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_reset_password" />
 
     <Button
         android:id="@+id/btn_reset_password"

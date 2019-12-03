@@ -4,6 +4,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public interface FirebaseInterface {
-    void onSuccess(Task<QuerySnapshot> data);
+    void validateStundetHelper(Task<QuerySnapshot> data, final String email);
     void onFailed(Task<QuerySnapshot> data);
 }

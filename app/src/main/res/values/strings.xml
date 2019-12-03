@@ -30,6 +30,13 @@
     <string name="create">Create</string>
     <string name="cancel">Cancel</string>
     <string name="mwf">MWF</string>
+    <string name="question_bg">question_bg</string>
+    <string name="john_doe">John Doe</string>
+    <string name="question_title">Question Title</string>
+    <string name="_2_comments">2 comments</string>
+    <string name="userlogo">userLogo</string>
+    <string name="commentcloud">commentCloud</string>
+    <string name="comments"> comments</string>
 
     <!-- Strings related to errors -->
     <string name="auth_failed">Authorization failed</string>
@@ -45,5 +52,6 @@
     <string name="forgot_password_msg">We need your registered email Id to send you password reset instructions.</string>
     <string name="btn_reset_password">Reset Password</string>
     <string name="back"><![CDATA[<< Back]]></string>
-
+    <string name="post">POST</string>
+    <string name="textview">TextView</string>
 </resources>

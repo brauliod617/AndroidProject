@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
 
 
 /**
@@ -30,7 +34,7 @@ import com.google.firebase.auth.FirebaseUser;
  * Other:
  * If user doesn't have an account, they can be taken to SignUp screen
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FirebaseInterface {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private EditText mInputEmail;
@@ -44,10 +48,23 @@ public class MainActivity extends AppCompatActivity {
     // Create reference to mAuthStateListener
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
+    FirebaseHelper firebaseHelper;
+
+    //hate that I have to do it like this, but can't call it inside onAuthStateChanged, because
+    //I need "this" from MainActivity
+    public void callFirebaseHelperFunction(String email){
+        //will call interfaceFunction validateStundetHelper, which will register stundet email
+        //to firestore if it is not already registerd. Had to do it like this because onAuthStateChanged
+        //and onComplete are async functions and act weird
+        firebaseHelper.validateStudentLogin(this, email );
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseHelper = new FirebaseHelper();
 
         // Views
         mInputEmail = (EditText) findViewById(R.id.main_User);
@@ -65,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
                 if (user != null) {
+                    callFirebaseHelperFunction(user.getEmail().toString());
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
 
@@ -100,7 +119,11 @@ public class MainActivity extends AppCompatActivity {
                 // Start the signup activity
                 Intent intent = new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
+<<<<<<< HEAD
+
+=======
                 //finish();
+>>>>>>> Change-to-firebase
             }
         });
     }
@@ -179,6 +202,29 @@ public class MainActivity extends AppCompatActivity {
 
         return valid;
     }
+
+    @Override
+    public void validateStundetHelper(Task <QuerySnapshot> task, String email) {
+        boolean studentAlreadyInFirestore = false;
+        for (QueryDocumentSnapshot document : task.getResult()) {
+            HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
+
+            if (current.get("email").equals(email)) {
+                 studentAlreadyInFirestore = true;
+                Log.println(Log.DEBUG, "Log", "Student already in firestore");
+            }
+        }
+        if(!studentAlreadyInFirestore) {
+            firebaseHelper.registerStudentEmailFirebase(email);
+            Log.println(Log.DEBUG, "Log", "Adding Student to firestore");
+        }
+
+    }
+
+    @Override
+    public void onFailed (Task < QuerySnapshot > data) {
+        Log.println(Log.DEBUG, "Log", "ERROR has occurred getting student");
+    }
 }
 
 
@@ -227,12 +273,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-
-        mAuth = FirebaseAuth.getInstance();
-=======
         firebaseHelper = new FirebaseHelper();
->>>>>>> 7ed8b5ad65ca34045643ad3b4313f4bb66b298fc
     }
 
     @Override
@@ -286,6 +327,27 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     private void signIn(String email, String password) {
 
 <<<<<<< HEAD
+    @Override
+    public void onSuccess(Task<QuerySnapshot> task){
+        for (QueryDocumentSnapshot document : task.getResult()) {
+            HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
+            if(current.get("email").equals(strEmail)){
+                if(current.get("password").equals(strPassword)) {
+                    student = new Student(current);
+                    student.setDocId(document.getId());
+
+                    Log.println(Log.DEBUG, "log", "Login successful");
+                    Intent intent = new Intent(this, HomePage.class);
+                    Bundle bundle = new Bundle();
+
+                    //We pass student obj to following activity so we know which user is logged in
+                    bundle.putSerializable("objStudent", student);
+                    intent.putExtras(bundle);
+
+                    //start HomePage activity
+                    startActivity(intent);
+=======
+<<<<<<< HEAD
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -308,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     }
 
         @Override
-        public void onSuccess (Task < QuerySnapshot > task) {
+        public void validateStundetHelper (Task < QuerySnapshot > task) {
             for (QueryDocumentSnapshot document : task.getResult()) {
                 HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
                 if (current.get("email").equals(strEmail)) {
@@ -321,29 +383,10 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
                         //We pass student obj to following activity so we know which user is logged in
                         bundle.putSerializable("objStudent", student);
                         intent.putExtras(bundle);
-=======
-    @Override
-    public void onSuccess(Task<QuerySnapshot> task){
-        for (QueryDocumentSnapshot document : task.getResult()) {
-            HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
-            if(current.get("email").equals(strEmail)){
-                if(current.get("password").equals(strPassword)) {
-                    student = new Student(current);
-                    student.setDocId(document.getId());
-                    Log.println(Log.DEBUG, "log", "Login successful");
-                    Intent intent = new Intent(this, HomePage.class);
-                    Bundle bundle = new Bundle();
-
-                    //We pass student obj to following activity so we know which user is logged in
-                    bundle.putSerializable("objStudent", student);
-                    intent.putExtras(bundle);
-
-                    //start HomePage activity
-                    startActivity(intent);
->>>>>>> 7ed8b5ad65ca34045643ad3b4313f4bb66b298fc
 
                         //start HomePage activity
                         startActivity(intent);
+>>>>>>> change-load-classes-to-work-with-auth
 
                     } else {
                         Log.println(Log.DEBUG, "Log", "Login was not successful");

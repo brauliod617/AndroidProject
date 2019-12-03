@@ -32,14 +32,13 @@ public class Register extends AppCompatActivity {
     private TextView confirmPassword;
     private Button registerButton;
 
-    private Student student;
+    //private Student student;
     FirebaseHelper firebaseHelper;
 
 
     // Initialize Firebase objects
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    private DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,6 @@ public class Register extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        mRef = FirebaseDatabase.getInstance().getReference("user");
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -111,6 +109,8 @@ public class Register extends AppCompatActivity {
         if (!validateForm()) {
             return;
         }
+<<<<<<< HEAD
+=======
 
         name = findViewById(R.id.register_user);
         email = findViewById(R.id.register_email);
@@ -119,20 +119,16 @@ public class Register extends AppCompatActivity {
 
         student = new Student(name.getText().toString(), email.getText().toString(), password.getText().toString());
 
+>>>>>>> Change-to-firebase
         //TODO: Validate student registration does not already exist before creating a new one
         //      Throwing an unhandled expression right now
         //      android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: registration.email (code 1555)
-        //databaseHelper = new DatabaseHelper(getApplicationContext());
-        //databaseHelper.createStudentRegistration(student);
-
-        //firebaseHelper = new FirebaseHelper();
 
 
         createAccount(email.getText().toString().trim(), password.getText().toString().trim());
 
-        firebaseHelper.registerStudentFirebase(student);
         Log.println(Log.DEBUG, "Log", "Created Registration");
-        super.onBackPressed();
+        //super.onBackPressed();
     }
 
     // Create a new account
@@ -155,8 +151,12 @@ public class Register extends AppCompatActivity {
                             // Create new user
                             FirebaseUser user = mAuth.getCurrentUser();
                             //firebaseHelper.registerStudentFirebase(student);
+<<<<<<< HEAD
+
+=======
                             student = new Student(name.getText().toString(), nEmail, nPassword);
                             mRef.child(user.getUid()).setValue(student);
+>>>>>>> Change-to-firebase
                         } else {
                             Toast.makeText(Register.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
@@ -215,5 +215,3 @@ public class Register extends AppCompatActivity {
 
 
 }
-
-

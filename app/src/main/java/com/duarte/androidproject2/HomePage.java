@@ -27,43 +27,46 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity implements CreateDialogInterface,
         FirebaseClassesInterface{
+
     Student student;
+
     ClassesAdpter adpter;
     FirebaseHelper firebaseHelper;
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
 
-    private FirebaseAuth mAuth;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-         //get student object sent over from login or register page
-         student = (Student) getIntent().getSerializableExtra("objStudent");
          adpter = attachAdapterToList();
+         adpter.setCreateDialogInterface(this);
          firebaseHelper = new FirebaseHelper();
 
          //load all current class and populate into class list
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
 
-        //loadClasses();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        firebaseHelper.getStudentFirebase(this, firebaseUser.getEmail());
     }
 /**************************************Add Class***************************************************/
-
     //When user clicks on "Create class button", will bring up addclass dialog wait
     //wait for user to press ok or cancel, if user press dialog closes and nothing happens
     //if user presses ok the next function is called
     public void openDialog(View view) {
     //https://stackoverflow.com/questions/30777753/how-to-get-the-data-from-dialogfragment-to-mainactivity-in-android
 
-        if(false){
+        if(Global.debug){
             Log.println(Log.DEBUG, "log", "Add class button pressed");
             Classes debugclasses = new Classes("DebugClass", "101",
                     "debug hall", "MWF", false);
@@ -83,7 +86,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
         Classes classes = new Classes(strClassName, strSectionName, classLocation, classDay,
                 false);
-        IsInClass isInClass = new IsInClass(student.getEmail(), strClassName, strSectionName);
+        IsInClass isInClass = new IsInClass(firebaseUser.getEmail(), strClassName, strSectionName);
 
         //get the classes => will call either onGetClassesSuccess or onGetClassesFailure vv
         //will create class tuple if it does not already exist
@@ -153,6 +156,22 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         }
     }
 
+    //Pull student tuple from firestore and populate student object with it
+    //we need it primarily for classes list
+    @Override
+    public void onGetStudentTuple(Task<QuerySnapshot> task){
+
+        for(QueryDocumentSnapshot current : task.getResult()){
+            if(current.get("email").equals(firebaseUser.getEmail())){
+                student = new Student( (HashMap<String, Object>) current.getData(), current.getId());
+            }
+        }
+
+        //now that we have loaded the student object and everything is okay,
+        //load classes
+        loadClasses();
+    }
+
     //for debug use only, make sure adapter is working
     public void populateClassesListViewDebug(ClassesAdpter adpter, Classes classes){
         adpter.add(classes);
@@ -168,7 +187,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     public void onGetIsInClassesFailed(Task<QuerySnapshot> task){
         //TODO:Figure out what to do here
     }
-
 /**************************************End Of Add Class********************************************/
 
 /**************************************Load Classes************************************************/
@@ -211,12 +229,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         }
     }
 
-/**************************************End Of Load Classes*****************************************/
-
-
-
-
-
     //Used to attach adapter to listview
     public ClassesAdpter attachAdapterToList(){
         ArrayList<Classes> classesArrayList = new ArrayList<>();
@@ -228,7 +240,24 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         return adpter;
     }
 
+/**************************************End Of Load Classes*****************************************/
 
+
+    //when user clicks on a class
+    @Override
+    public void onClassClicked(Classes selectedClass){
+        Intent intent = new Intent(this, QuestionsPage.class);
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable("selectedClass", selectedClass);
+        bundle.putSerializable("email", firebaseUser.getEmail());
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
+
+
+/**************************************Navigation**************************************************/
     public void initNavigationDrawer() {
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
@@ -304,6 +333,10 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+<<<<<<< HEAD
+/********************************End of Navigation*************************************************/
+=======
 
+>>>>>>> Change-to-firebase
 }
 
