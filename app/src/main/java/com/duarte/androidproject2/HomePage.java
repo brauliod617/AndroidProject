@@ -33,14 +33,11 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     ClassesAdpter adpter;
     FirebaseHelper firebaseHelper;
 
-<<<<<<< HEAD
-=======
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
 
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
->>>>>>> change-load-classes-to-work-with-auth
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -232,12 +229,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         }
     }
 
-<<<<<<< HEAD
-=======
-/**************************************End Of Load Classes*****************************************/
-
-
->>>>>>> change-load-classes-to-work-with-auth
     //Used to attach adapter to listview
     public ClassesAdpter attachAdapterToList(){
         ArrayList<Classes> classesArrayList = new ArrayList<>();
@@ -248,7 +239,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         listView.setAdapter(adpter);
         return adpter;
     }
-<<<<<<< HEAD
+
 /**************************************End Of Load Classes*****************************************/
 
 
@@ -263,8 +254,8 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
         startActivity(intent);
     }
-}
-=======
+
+
 
 
     public void initNavigationDrawer() {
@@ -345,4 +336,3 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
 }
 
->>>>>>> change-load-classes-to-work-with-auth

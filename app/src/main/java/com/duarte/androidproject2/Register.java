@@ -2,12 +2,9 @@ package com.duarte.androidproject2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
-=======
 
 import android.content.Intent;
 import android.net.Uri;
->>>>>>> change-load-classes-to-work-with-auth
 import android.os.Bundle;
 import android.os.Debug;
 import android.text.TextUtils;
@@ -118,10 +115,6 @@ public class Register extends AppCompatActivity {
 
         createAccount(email.getText().toString().trim(), password.getText().toString().trim());
 
-<<<<<<< HEAD
-        //firebaseHelper.registerStudentFirebase(student);
-=======
->>>>>>> change-load-classes-to-work-with-auth
         Log.println(Log.DEBUG, "Log", "Created Registration");
         //super.onBackPressed();
     }

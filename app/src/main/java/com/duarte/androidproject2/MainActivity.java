@@ -269,12 +269,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-
-        mAuth = FirebaseAuth.getInstance();
-=======
         firebaseHelper = new FirebaseHelper();
->>>>>>> 7ed8b5ad65ca34045643ad3b4313f4bb66b298fc
     }
 
     @Override
