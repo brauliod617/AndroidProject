@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 // Start the signup activity
                 Intent intent = new Intent(MainActivity.this, Register.class);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
     }

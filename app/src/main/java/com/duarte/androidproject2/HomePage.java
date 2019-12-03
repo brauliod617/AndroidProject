@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
@@ -242,27 +243,28 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
                         Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.notification:
+                        Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
                     case R.id.reset_password:
                         Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_SHORT).show();
                         resetPassword();
                         //finish();
                         break;
-                    case R.id.notification:
-                        Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
                     case R.id.logout:
                         logOut();
                         finish();
-
                 }
                 return true;
             }
         });
         View header = navigationView.getHeaderView(0);
         TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
-        //TODO: need to change header with the user id/email
-        tv_email.setText("Juyeong_Seo@student.uml.edu");
+        // change header with the user id/email
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        tv_email.setText(email);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){

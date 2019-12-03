@@ -2,7 +2,9 @@ package com.duarte.androidproject2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Debug;
 import android.text.TextUtils;
@@ -17,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -94,7 +97,7 @@ public class Register extends AppCompatActivity {
         }
     }
 
-    public void processRegistration(){
+    public void processRegistration() {
 
         //TODO: Validate password match confirm password.
         //      Validate username and or email does not already exist,
@@ -114,7 +117,7 @@ public class Register extends AppCompatActivity {
         password = findViewById(R.id.register_password);
         confirmPassword = findViewById(R.id.register_password_confirm);
 
-        student = new Student(name.getText().toString() , email.getText().toString(), password.getText().toString());
+        student = new Student(name.getText().toString(), email.getText().toString(), password.getText().toString());
 
         //TODO: Validate student registration does not already exist before creating a new one
         //      Throwing an unhandled expression right now
@@ -123,6 +126,7 @@ public class Register extends AppCompatActivity {
         //databaseHelper.createStudentRegistration(student);
 
         //firebaseHelper = new FirebaseHelper();
+
 
         createAccount(email.getText().toString().trim(), password.getText().toString().trim());
 
@@ -151,9 +155,8 @@ public class Register extends AppCompatActivity {
                             // Create new user
                             FirebaseUser user = mAuth.getCurrentUser();
                             //firebaseHelper.registerStudentFirebase(student);
-                            student = new Student(name.getText().toString() , nEmail, nPassword);
+                            student = new Student(name.getText().toString(), nEmail, nPassword);
                             mRef.child(user.getUid()).setValue(student);
-
                         } else {
                             Toast.makeText(Register.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
@@ -170,6 +173,7 @@ public class Register extends AppCompatActivity {
 
         }
     }
+
     private boolean validateForm() {
         boolean isValid = true;
 
