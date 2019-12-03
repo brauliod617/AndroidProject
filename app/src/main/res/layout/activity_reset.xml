@@ -54,7 +54,6 @@
         android:layout_marginRight="128dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="RESET PASSWORD"
         android:padding="10dp"
         android:text="@string/back"
         android:textAllCaps="false"

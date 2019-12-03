@@ -41,9 +41,8 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="forgot_password">Forgot password?</string>
+    <!-- Reset Password -->
     <string name="forgot_password_msg">We need your registered Email Id to send you password reset instructions.</string>
-    <string name="btn_forgot_password">Forgot your password?</string>
     <string name="btn_reset_password">Reset Password</string>
     <string name="back"><![CDATA[<< Back]]></string>
 
