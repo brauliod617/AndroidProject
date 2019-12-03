@@ -242,6 +242,8 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
                     case R.id.home:
                         Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
+                        home();
+                        //finish();
                         break;
                     case R.id.notification:
                         Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
@@ -293,6 +295,12 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
     private void resetPassword() {
         Intent intent = new Intent(getApplicationContext(),ResetActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private void home() {
+        Intent intent = new Intent(getApplicationContext(),HomePage.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
