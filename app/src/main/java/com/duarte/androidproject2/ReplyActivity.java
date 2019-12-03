@@ -1,12 +1,17 @@
 package com.duarte.androidproject2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ReplyActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QuerySnapshot;
+
+public class ReplyActivity extends AppCompatActivity{
 
     Questions question;
 
@@ -15,12 +20,14 @@ public class ReplyActivity extends AppCompatActivity {
     TextView txvOpName;
     TextView txvQuestion;
 
+    Bundle bundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reply);
 
-        Bundle bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
 
         if(bundle.get("question") != null){
             question = (Questions) bundle.get("question");
@@ -39,6 +46,18 @@ public class ReplyActivity extends AppCompatActivity {
         txvQuestionTitle.setText(question.getQuestionTitle());
         txvOpName.setText(question.getOpEmail());
         txvQuestion.setText(question.getContent());
+    }
+
+    public void onClickAddAnswer(View view){
+        Intent intent = new Intent(getApplicationContext(), PostReplyActivity.class);
+
+        //bundle came from Questions Page with
+        //["selectedClass", "email", "classOfQuestion", "question"]
+        //email is active user email
+
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
 

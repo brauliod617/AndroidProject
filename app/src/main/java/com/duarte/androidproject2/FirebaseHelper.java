@@ -23,6 +23,7 @@ public class FirebaseHelper {
     private final String classesCollection = "classes";
     private final String isInClassCollection = "isInClass";
     private final String questionsCollection = "questions";
+    private final String answersCollection = "answers";
 
     FirebaseHelper(){
         db = FirebaseFirestore.getInstance();
@@ -282,4 +283,32 @@ public class FirebaseHelper {
     }
 
 /********************************END OF QUESTION***************************************************/
+
+/********************************POST ANSWER*******************************************************/
+    public void postAnswer(final PostReplyInterface postReplyInterface, String questionName,
+                           String opEmail, String content){
+        Map<String, Object> answerMap = new HashMap<>();
+
+        answerMap.put("questionName", questionName);
+        answerMap.put("OPemail", opEmail);
+        answerMap.put("content", content);
+
+        db.collection(answersCollection)
+                .add(answerMap)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        postReplyInterface.onAddAnswerSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        postReplyInterface.onAddAnswerFailed(e);
+                    }
+                });
+    }
+
+
+/********************************END OF POST ANSWER************************************************/
 }

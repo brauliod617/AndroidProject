@@ -59,4 +59,7 @@
     <string name="hhw6">Help with homework 6</string>
     <string name="answers">Answers</string>
     <string name="add_an_answer">\t\tAdd an answer</string>
+    <string name="line">line</string>
+    <string name="add_answer">Add answer</string>
+    <string name="your_question">Your question</string>
 </resources>

@@ -14,7 +14,7 @@
         android:visibility="visible">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageView333"
             android:layout_width="wrap_content"
             android:layout_height="61dp"
             android:layout_marginTop="-5dp"
@@ -26,15 +26,16 @@
             app:srcCompat="@drawable/ic_navbarbg" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/imageButton222"
             android:layout_width="54dp"
             android:layout_height="56dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/menu_icon"
-            app:srcCompat="@drawable/ic_navbarmenu" />
+            android:onClick="onXClick"
+            app:srcCompat="@drawable/ic_x" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/txvAddAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
@@ -43,12 +44,12 @@
             android:layout_marginEnd="60dp"
             android:layout_marginRight="60dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/comp_3090"
+            android:text="@string/add_answer"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/postBtn"
+            android:id="@+id/postAnswerBtn"
             android:layout_width="50dp"
             android:layout_height="23dp"
             android:layout_marginStart="340dp"
@@ -58,7 +59,7 @@
             android:layout_marginRight="380dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/notification_bell_nav_bar"
-            android:onClick="postQuestion"
+            android:onClick="onPostAnswerClick"
             android:text="@string/post"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
@@ -69,13 +70,13 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/edtQuestionTitlePQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="16dp"
-            android:text="@string/comp_3090"
+            android:text="@string/hhw6"
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +85,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/greyline"
+            android:id="@+id/greyline44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -93,58 +94,29 @@
             android:scaleX="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/edtQuestionTitlePQ"
             app:srcCompat="@drawable/ic_greyline" />
 
         <EditText
-            android:id="@+id/edtQuestionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints=""
-            android:hint="Question Title"
-            android:inputType="textShortMessage"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textColorHint="@color/colorPrimaryDark"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/greyline" />
-
-        <ImageView
-            android:id="@+id/greyline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:scaleType="fitCenter"
-            android:scaleX="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtQuestionTitle"
-            app:srcCompat="@drawable/ic_greyline"
-            android:contentDescription="TODO" />
-
-        <EditText
-            android:id="@+id/edtQuestion"
+            android:id="@+id/txeAnswer"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="2dp"
             android:layout_marginRight="2dp"
             android:layout_marginBottom="2dp"
             android:autofillHints=""
             android:gravity="top"
-            android:hint="Your question"
+            android:hint="Your answer"
             android:inputType="textLongMessage|textMultiLine"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/greyline2" />
+            app:layout_constraintTop_toBottomOf="@+id/greyline44"
+            tools:targetApi="o" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
