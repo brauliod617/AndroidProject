@@ -251,6 +251,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
         bundle.putSerializable("selectedClass", selectedClass);
         bundle.putSerializable("email", firebaseUser.getEmail());
+        bundle.putSerializable("classOfQuestion", selectedClass.getClassName());
         intent.putExtras(bundle);
 
         startActivity(intent);

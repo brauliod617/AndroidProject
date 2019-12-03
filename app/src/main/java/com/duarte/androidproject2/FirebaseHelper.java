@@ -306,9 +306,10 @@ public class FirebaseHelper {
     public void uploadQuestion(final QuestionInterface questionInterface, Questions questions){
         Map<String, Object> questionsMap = new HashMap<>();
 
-        questionsMap.put("email", questions.getOpEmail());
-        questionsMap.put("title", questions.getQuestionTitle());
-        questionsMap.put("question", questions.getContent());
+        questionsMap.put("opEmail", questions.getOpEmail());
+        questionsMap.put("questionTitle", questions.getQuestionTitle());
+        questionsMap.put("content", questions.getContent());
+        questionsMap.put("classOfQuestion", questions.getClassOfQuestion());
 
         db.collection(questionsCollection)
                 .add(questions)
@@ -322,6 +323,24 @@ public class FirebaseHelper {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         questionInterface.questionPostedFailure();
+                    }
+                });
+    }
+
+    public void downloadQuestions(final LoadQuestionInteface loadQuestionInteface){
+
+        db.collection(questionsCollection)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        loadQuestionInteface.questionDownloadSuccessfull(task);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        loadQuestionInteface.questionDownloadFailed(e);
                     }
                 });
     }

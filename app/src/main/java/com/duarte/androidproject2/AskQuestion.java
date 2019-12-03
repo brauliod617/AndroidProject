@@ -33,7 +33,8 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask_question);
 
-        //will have ["selectedClass", "email"] loaded from QuestionsPage.java from HomePage.java
+        //will have ["selectedClass", "email", "classOfQuestion"]
+        // loaded from QuestionsPage.java from HomePage.java
         Intent intent = this.getIntent();
         bundle = intent.getExtras();
 
@@ -50,21 +51,27 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
         strQuestion = edtQuestion.getText().toString();
 
         if(strQuestionTitle.isEmpty()) {
-            Toast.makeText(this, "Must enter a question Title", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Must enter a question Title",
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
         if(strQuestion.isEmpty()) {
-            Toast.makeText(this, "Must enter a question", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Must enter a question",
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(bundle.get("selectedClass").toString().isEmpty() || bundle.get("email").toString().isEmpty()){
-            Log.println(Log.DEBUG, "Log", "Error has occurred in reading bundle from AskQuestion.java EXITING");
+        if(bundle.get("selectedClass").toString().isEmpty() ||
+                bundle.get("email").toString().isEmpty() ||
+                bundle.get("classOfQuestion").toString().isEmpty()){
+            Log.println(Log.DEBUG, "Log",
+                    "Error has occurred in reading bundle from AskQuestion.java EXITING");
             return;
         }
 
-        questions = new Questions(bundle.get("email").toString(), strQuestionTitle, strQuestion);
+        questions = new Questions(bundle.get("email").toString(), strQuestionTitle, strQuestion,
+                bundle.get("classOfQuestion").toString());
 
 
         firebaseHelper.uploadQuestion(this, questions);
@@ -78,7 +85,9 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
     }
     @Override //called from FirebaseHelper if upload question fails
     public void questionPostedFailure(){
-        Toast.makeText(this, "Error has occurred question was not posted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error has occurred question was not posted",
+                Toast.LENGTH_SHORT).show();
         finish();
     }
+
 }

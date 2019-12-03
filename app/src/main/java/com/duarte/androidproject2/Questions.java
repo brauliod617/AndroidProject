@@ -1,16 +1,28 @@
 package com.duarte.androidproject2;
 
+import java.util.HashMap;
+
 public class Questions {
     private String opEmail;
     private String questionTitle;
     private int numberOfComments;
     private String content;
+    private String classOfQuestion;
 
-    public Questions(String opEmail, String questionTitle, String content) {
+    public Questions(String opEmail, String questionTitle, String content, String classOfQuestion) {
         this.opEmail = opEmail;
         this.questionTitle = questionTitle;
         this.content = content;
         this.numberOfComments = 0;
+        this.classOfQuestion = classOfQuestion;
+    }
+
+    public Questions(HashMap<String, Object> objQuestions){
+        this.opEmail = objQuestions.get("opEmail").toString();
+        this.questionTitle = objQuestions.get("questionTitle").toString();
+        this.content = objQuestions.get("content").toString();
+        this.numberOfComments = 0;
+        this.classOfQuestion = objQuestions.get("classOfQuestion").toString();
     }
 
     public Questions() {
@@ -46,5 +58,9 @@ public class Questions {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getClassOfQuestion() {
+        return classOfQuestion;
     }
 }
