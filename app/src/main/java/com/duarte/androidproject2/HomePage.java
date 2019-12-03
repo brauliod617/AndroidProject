@@ -52,7 +52,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         setSupportActionBar(toolbar);
         initNavigationDrawer();
 
-        loadClasses();
+        //loadClasses();
     }
 /**************************************Add Class***************************************************/
 
