@@ -55,9 +55,9 @@ public class Register extends AppCompatActivity {
 
         firebaseHelper = new FirebaseHelper();
 
-        firebaseHelper.registerStudentFirebase(student);
+        //firebaseHelper.registerStudentFirebase(student);
         Log.println(Log.DEBUG, "Log", "Created Registration");
-        super.onBackPressed();
+        //super.onBackPressed();
     }
 }
 
