@@ -59,6 +59,8 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         //TODO: it can take a few seconds or minutes to load classes, maybe we show Toast saying
         //  its loading or a loading wheel, until loadclasses() is called
         firebaseHelper.getStudentFirebase(this, firebaseUser.getEmail());
+
+
     }
 /**************************************Add Class***************************************************/
     //When user clicks on "Create class button", will bring up addclass dialog wait
@@ -312,6 +314,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         tv_email.setText(email);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
 
+        toolbar.setTitle("Home");
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){
 
             @Override

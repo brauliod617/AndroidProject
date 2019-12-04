@@ -87,20 +87,6 @@
                 android:contentDescription="@string/menu_icon"
                 app:srcCompat="@drawable/ic_navbarmenu" />
 
-            <TextView
-                android:id="@+id/textViewnav5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/comp_3090"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
             <ImageButton
                 android:id="@+id/imageButtonNav1"
                 android:layout_width="64dp"

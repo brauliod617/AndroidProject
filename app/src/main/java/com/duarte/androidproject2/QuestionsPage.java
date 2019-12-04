@@ -32,7 +32,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
     String className;
     FirebaseHelper firebaseHelper;
     Bundle bundle;
-    TextView txvClassTitleForNavBar;
+
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -54,15 +54,10 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
 
         className = getIntent().getExtras().get("classOfQuestion").toString();
 
-        txvClassTitleForNavBar = findViewById(R.id.textViewnav5);
-
-        //TODO: validate get("classOfQuestion) is not null and not bigger then like 10 chars or
-        //      something reasonable
-        txvClassTitleForNavBar.setText(getIntent().getExtras().get("classOfQuestion").toString());
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
+        toolbar.setTitle(getIntent().getExtras().get("classOfQuestion").toString());
     }
 
     @Override
@@ -70,6 +65,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
         super.onResume();
         adapter.clear();
         firebaseHelper.downloadQuestions(this);
+        toolbar.setTitle(getIntent().getExtras().get("classOfQuestion").toString());
     }
 
     public QuestionsAdapter attachAdapterToList(){
