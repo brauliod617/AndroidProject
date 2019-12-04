@@ -53,7 +53,6 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
         bundle = getIntent().getExtras();
 
         className = getIntent().getExtras().get("classOfQuestion").toString();
-        firebaseHelper.downloadQuestions(this);
 
         txvClassTitleForNavBar = findViewById(R.id.textViewnav5);
 
@@ -66,6 +65,13 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
         initNavigationDrawer();
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        adapter.clear();
+        firebaseHelper.downloadQuestions(this);
+    }
+
     public QuestionsAdapter attachAdapterToList(){
         ArrayList<Questions> questionsArrayList = new ArrayList<>();
 
@@ -73,7 +79,6 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
 
         ListView listView = findViewById(R.id.questionsPageListView);
         listView.setAdapter(adapter);
-
 
         return adapter;
 

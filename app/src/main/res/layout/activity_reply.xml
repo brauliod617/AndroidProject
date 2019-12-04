@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPurple"
+    android:background="@color/colorAccent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.duarte.androidproject2.ReplyActivity">
@@ -161,36 +161,23 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:fontFamily="@font/roboto"
             android:gravity="center|start"
             android:text="@string/answers"
-            android:fontFamily="@font/roboto"
             android:textColor="@color/material_white_1000" />
     </LinearLayout>
 
 
-    <ScrollView
-        android:id="@+id/cnlAnswers"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/lsvAnswers"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/btnAddAnswer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Spacer"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/Spacer">
 
-        <ListView
-            android:id="@+id/lsvAnswers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            />
-    </ScrollView>
+    </ListView>
 
     <Button
         android:id="@+id/btnAddAnswer"
@@ -204,7 +191,6 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.353"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
