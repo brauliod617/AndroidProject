@@ -142,7 +142,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         //if same student tries to sign up for same class and section, don't allow it
         if(isInClassExists){
             Log.println(Log.DEBUG, "log", "isInClass entry already exist");
-            //TODO: show dialog saying this class and section already exist
+            Toast.makeText(getApplicationContext(), "This class already exists!", Toast.LENGTH_SHORT).show();
         }else {
             //if student is not registered for this class, we add the entry
             //add isInClass tuple to database
