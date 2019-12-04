@@ -93,9 +93,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:ems="20"
                 android:paddingRight="50dp"
                 android:text="@string/hhw6"
-                android:ems="20"
                 android:textColor="#000000"
                 android:textSize="14sp"
 
@@ -165,7 +165,8 @@
             android:textColor="#000000" />
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ScrollView
         android:id="@+id/cnlAnswers"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -185,7 +186,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/btnAddAnswer"
