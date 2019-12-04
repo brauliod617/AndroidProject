@@ -1,14 +1,22 @@
 package com.duarte.androidproject2;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -25,6 +33,9 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
     FirebaseHelper firebaseHelper;
     Bundle bundle;
     TextView txvClassTitleForNavBar;
+
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +60,10 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
         //TODO: validate get("classOfQuestion) is not null and not bigger then like 10 chars or
         //      something reasonable
         txvClassTitleForNavBar.setText(getIntent().getExtras().get("classOfQuestion").toString());
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        initNavigationDrawer();
     }
 
     public QuestionsAdapter attachAdapterToList(){
@@ -114,4 +129,82 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
     }
 
 
+    /**************************************Navigation**************************************************/
+    public void initNavigationDrawer() {
+
+        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                int id = menuItem.getItemId();
+
+                switch (id){
+                    case R.id.home:
+                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        home();
+                        //finish();
+                        break;
+                    case R.id.notification:
+                        Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.reset_password:
+                        Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_SHORT).show();
+                        resetPassword();
+                        //finish();
+                        break;
+                    case R.id.logout:
+                        logOut();
+                        finish();
+                }
+                return true;
+            }
+        });
+        View header = navigationView.getHeaderView(0);
+        TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
+        // change header with the user id/email
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        tv_email.setText(email);
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){
+
+            @Override
+            public void onDrawerClosed(View v){
+                super.onDrawerClosed(v);
+            }
+
+            @Override
+            public void onDrawerOpened(View v) {
+                super.onDrawerOpened(v);
+            }
+        };
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+    }
+
+    private void logOut() {
+        FirebaseAuth.getInstance().signOut();
+
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private void resetPassword() {
+        Intent intent = new Intent(getApplicationContext(),ResetActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private void home() {
+        Intent intent = new Intent(getApplicationContext(),HomePage.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+/********************************End of Navigation*************************************************/
 }
