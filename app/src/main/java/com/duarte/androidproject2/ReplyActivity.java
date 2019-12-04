@@ -59,7 +59,7 @@ public class ReplyActivity extends AppCompatActivity implements PullAnswersInter
 
         //will pull answers from DB, if success will call onPullAnswersSuccess
         //if failure will call onPullAnswerFailure, both implemented inside this class
-        firebaseHelper.pullAnswers(this);
+        //firebaseHelper.pullAnswers(this);
     }
 
     //after postAnswer is finished this activity will resume and this will be called
@@ -67,6 +67,7 @@ public class ReplyActivity extends AppCompatActivity implements PullAnswersInter
     @Override
     protected void onResume(){
         super.onResume();
+        adapter.clear();
         firebaseHelper.pullAnswers(this);
     }
 
