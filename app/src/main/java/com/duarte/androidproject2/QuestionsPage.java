@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -57,7 +58,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
 
         txvClassTitleForNavBar = findViewById(R.id.textViewnav5);
 
-        //TODO: validate get("classOfQuestion) is not null and not bigger then like 10 chars or
+        //TODO: validate get("classOfQuestion) is not null and not bigger then like 30 chars or
         //      something reasonable
         txvClassTitleForNavBar.setText(getIntent().getExtras().get("classOfQuestion").toString());
 
@@ -65,6 +66,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
         setSupportActionBar(toolbar);
         initNavigationDrawer();
     }
+
 
     public QuestionsAdapter attachAdapterToList(){
         ArrayList<Questions> questionsArrayList = new ArrayList<>();

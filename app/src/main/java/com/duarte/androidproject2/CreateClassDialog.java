@@ -98,6 +98,14 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
             return;
         }
 
+        if(strClassName.length() > 29){
+            Log.println(Log.DEBUG, "log", "Class Name has more than 20 characters");
+            Toast.makeText(getContext(),
+                    "Class name should be less than 30 characters!",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if(strSectionName.isEmpty()){
             Log.println(Log.DEBUG, "log", "Fields left empty");
             Toast.makeText(getContext(),

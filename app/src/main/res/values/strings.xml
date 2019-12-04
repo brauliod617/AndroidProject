@@ -44,6 +44,8 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_password_length">Password should be at least 6 letters</string>
+    <string name="error_class_title_length">Class title should be less than 30 letters</string>
+
 
     <!-- ActionBar strings -->
     <string name="action_settings">Settings</string>
