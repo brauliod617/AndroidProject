@@ -284,7 +284,7 @@ public class FirebaseHelper {
 
 /********************************END OF QUESTION***************************************************/
 
-/********************************POST ANSWER*******************************************************/
+/********************************ANSWER************************************************************/
     public void postAnswer(final PostReplyInterface postReplyInterface, String questionName,
                            String opEmail, String content){
         Map<String, Object> answerMap = new HashMap<>();
@@ -309,6 +309,21 @@ public class FirebaseHelper {
                 });
     }
 
-
-/********************************END OF POST ANSWER************************************************/
+    public void pullAnswers(final PullAnswersInterface pullAnswersInterface) {
+        db.collection(answersCollection)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        pullAnswersInterface.onPullAnswersSuccess(task);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pullAnswersInterface.onPullAnswersFailed(e);
+                    }
+                });
+    }
+/********************************END ANSWER********************************************************/
 }

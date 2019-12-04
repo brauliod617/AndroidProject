@@ -65,7 +65,6 @@ public class PostReplyActivity extends AppCompatActivity implements PostReplyInt
                     bundle.get("email").toString(), answer);
 
         }
-
     }
 
     @Override

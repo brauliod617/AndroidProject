@@ -3,15 +3,17 @@ package com.duarte.androidproject2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class ReplyActivity extends AppCompatActivity{
+public class ReplyActivity extends AppCompatActivity implements PullAnswersInterface{
 
     Questions question;
 
@@ -19,8 +21,11 @@ public class ReplyActivity extends AppCompatActivity{
     TextView txvQuestionTitle;
     TextView txvOpName;
     TextView txvQuestion;
+    FirebaseHelper firebaseHelper;
 
     Bundle bundle;
+
+    AnswerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -33,7 +38,8 @@ public class ReplyActivity extends AppCompatActivity{
             question = (Questions) bundle.get("question");
         }else {
             //Fatal error
-            Toast.makeText(this, "Fatal Error has Occurred", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fatal Error has Occurred",
+                    Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -46,6 +52,22 @@ public class ReplyActivity extends AppCompatActivity{
         txvQuestionTitle.setText(question.getQuestionTitle());
         txvOpName.setText(question.getOpEmail());
         txvQuestion.setText(question.getContent());
+
+        firebaseHelper = new FirebaseHelper();
+
+        adapter = attachAdapterToList();
+
+        //will pull answers from DB, if success will call onPullAnswersSuccess
+        //if failure will call onPullAnswerFailure, both implemented inside this class
+        firebaseHelper.pullAnswers(this);
+    }
+
+    //after postAnswer is finished this activity will resume and this will be called
+    //and here we will pull the answers to show newly added answer
+    @Override
+    protected void onResume(){
+        super.onResume();
+        firebaseHelper.pullAnswers(this);
     }
 
     public void onClickAddAnswer(View view){
@@ -60,5 +82,36 @@ public class ReplyActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    public AnswerAdapter attachAdapterToList(){
+        ArrayList<Answer> answerArrayList = new ArrayList<>();
 
+        AnswerAdapter adapter = new AnswerAdapter(this, answerArrayList);
+
+        ListView listView = findViewById(R.id.lsvAnswers);
+        listView.setAdapter(adapter);
+        return adapter;
+    }
+
+    //called from firebaseHelper if pulling the answers were successful
+    @Override
+    public void onPullAnswersSuccess(Task<QuerySnapshot> task){
+
+        for(QueryDocumentSnapshot current : task.getResult()){
+            //TODO: validate current is what we expect, see Answer.java constructor
+
+            //does this answer belong to this question
+            if(question.getQuestionTitle().equals(current.get("questionName"))){
+                Answer temp = new Answer((HashMap<String, Object>) current.getData());
+                adapter.add(temp);
+            }
+        }
+    }
+
+    @Override
+    public void onPullAnswersFailed(Exception e) {
+        //Fatal error
+        Toast.makeText(this, "Failed to pull answers", Toast.LENGTH_LONG).show();
+        finish();
+        e.printStackTrace();
+    }
 }
