@@ -146,10 +146,11 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
                         home();
                         //finish();
                         break;
-                    case R.id.notification:
+                    /*case R.id.notification:
                         Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
                         break;
+                        */
                     case R.id.reset_password:
                         Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_SHORT).show();
                         resetPassword();
