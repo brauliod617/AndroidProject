@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPurple"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.duarte.androidproject2.ReplyActivity">
@@ -70,7 +70,8 @@
         android:layout_height="wrap_content"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/navigationView2">
+        app:layout_constraintTop_toBottomOf="@+id/navigationView2"
+        tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -115,8 +116,8 @@
 
         <ScrollView
             android:id="@+id/scvQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="278dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginEnd="16dp"
@@ -145,10 +146,10 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
-        android:id="@+id/greySpacer"
+        android:id="@+id/Spacer"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:background="@color/material_grey_500"
+        android:background="@color/material_indigo_500"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +163,8 @@
             android:layout_marginRight="16dp"
             android:gravity="center|start"
             android:text="@string/answers"
-            android:textColor="#000000" />
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/material_white_1000" />
     </LinearLayout>
 
 
@@ -175,7 +177,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAddAnswer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greySpacer">
+        app:layout_constraintTop_toBottomOf="@+id/Spacer"
+        >
 
         <ListView
             android:id="@+id/lsvAnswers"
@@ -185,7 +188,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            />
     </ScrollView>
 
     <Button

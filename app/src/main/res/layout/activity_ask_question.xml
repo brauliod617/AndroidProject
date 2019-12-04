@@ -57,7 +57,7 @@
             android:layout_marginRight="30dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/notification_bell_nav_bar"
-            android:onClick="onPostAnswerClick"
+            android:onClick="postQuestion"
             android:text="@string/post"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />

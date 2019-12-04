@@ -97,7 +97,7 @@ public class Register extends AppCompatActivity {
 
     public void processRegistration() {
 
-        //TODO: Validate password match confirm password.
+        //      Validate password match confirm password.
         //      Validate username and or email does not already exist,
         //      This will depend on what we choose to use for our credentials.
         //       Validate the input make sure it is what we expect.
@@ -182,6 +182,13 @@ public class Register extends AppCompatActivity {
         String sPassword = password.getText().toString().trim();
         if (TextUtils.isEmpty(sPassword)) {
             password.setError(getString(R.string.error_field_required));
+            isValid = false;
+        } else {
+            password.setError(null);
+        }
+
+        if (sPassword.length() < 6) {
+            password.setError(getString(R.string.error_password_length));
             isValid = false;
         } else {
             password.setError(null);

@@ -74,6 +74,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
         ListView listView = findViewById(R.id.questionsPageListView);
         listView.setAdapter(adapter);
 
+
         return adapter;
 
     }

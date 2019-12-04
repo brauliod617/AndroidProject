@@ -16,6 +16,7 @@
     <string name="app_icon">App Icon</string>
     <string name="nav_bar_background">Nav Bar Background</string>
     <string name="add_class_button">Add Class Button</string>
+    <string name="add_question_button">Add Question Button</string>
     <string name="notification_active_icon">Notification Active Icon</string>
     <string name="nc_southwick_407">NC Southwick 407</string>
     <string name="menu_icon">Menu Icon</string>
@@ -42,6 +43,7 @@
     <string name="auth_failed">Authorization failed</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_password_length">Password should be at least 6 letters</string>
 
     <!-- ActionBar strings -->
     <string name="action_settings">Settings</string>
