@@ -9,6 +9,8 @@ import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.fragment.app.DialogFragment;
 
 //Creates the dialog box, and add listeners to the "ok" and "cancel" button
@@ -88,10 +90,36 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
             strClassLocation = edtClassLocation.getText().toString();
         }
         //check user didn't leave anything empty
-        if(strClassName.isEmpty() || strSectionName.isEmpty() || strClassLocation.isEmpty() ||
-        strClassDay.isEmpty()){
+        if(strClassName.isEmpty()){
             Log.println(Log.DEBUG, "log", "Fields left empty");
-            //TODO: add dialog box saying class name or class section is empty
+            Toast.makeText(getContext(),
+                    "Class name is empty!",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(strSectionName.isEmpty()){
+            Log.println(Log.DEBUG, "log", "Fields left empty");
+            Toast.makeText(getContext(),
+                    "Class section is empty!",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(strClassLocation.isEmpty() ||
+                strClassDay.isEmpty()){
+            Log.println(Log.DEBUG, "log", "Fields left empty");
+            Toast.makeText(getContext(),
+                    "Class location is empty!",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(strClassDay.isEmpty()){
+            Log.println(Log.DEBUG, "log", "Fields left empty");
+            Toast.makeText(getContext(),
+                    "Class day is empty!",
+                    Toast.LENGTH_LONG).show();
             return;
         }
 

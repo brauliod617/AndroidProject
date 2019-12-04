@@ -1,6 +1,7 @@
 package com.duarte.androidproject2;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -55,8 +56,6 @@ public class FirebaseHelper {
         Map<String, Object> mapStudent = new HashMap<>();
 
         mapStudent.put("email", email);
-
-        //TODO check if student exists before registering
 
         db.collection(studentCollection)
                 .add(mapStudent)

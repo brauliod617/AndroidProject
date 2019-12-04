@@ -58,6 +58,8 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        firebaseHelper = new FirebaseHelper();
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -97,7 +99,7 @@ public class Register extends AppCompatActivity {
 
     public void processRegistration() {
 
-        //TODO: Validate password match confirm password.
+        //      Validate password match confirm password.
         //      Validate username and or email does not already exist,
         //      This will depend on what we choose to use for our credentials.
         //       Validate the input make sure it is what we expect.
@@ -137,14 +139,14 @@ public class Register extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(Register.this,
                                     "Welcome " + mAuth.getCurrentUser().getEmail(),
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                             // Create new user
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //firebaseHelper.registerStudentFirebase(student);
+                            firebaseHelper.registerStudentEmailFirebase(nEmail);
 
                         } else {
                             Toast.makeText(Register.this, R.string.auth_failed,
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -182,6 +184,13 @@ public class Register extends AppCompatActivity {
         String sPassword = password.getText().toString().trim();
         if (TextUtils.isEmpty(sPassword)) {
             password.setError(getString(R.string.error_field_required));
+            isValid = false;
+        } else {
+            password.setError(null);
+        }
+
+        if (sPassword.length() < 6) {
+            password.setError(getString(R.string.error_password_length));
             isValid = false;
         } else {
             password.setError(null);

@@ -27,11 +27,42 @@ public class Classes implements Serializable {
     }
 
     Classes(HashMap<String, Object> objClasses){
-        this.className = objClasses.get("className").toString();
-        this.sectionNumber = objClasses.get("sectionNumber").toString();
-        this.classLocation = objClasses.get("classLocation").toString();
-        this.classDay = objClasses.get("classDay").toString();
-        this.notification = Boolean.parseBoolean(objClasses.get("notification").toString());
+        try {
+            if (objClasses.get("className") != null) {
+                this.className = objClasses.get("className").toString();
+            } else {
+                this.className = "";
+            }
+
+            if (objClasses.get("sectionNumber") != null) {
+                this.sectionNumber = objClasses.get("sectionNumber").toString();
+            } else {
+                this.sectionNumber = "";
+            }
+
+            if (objClasses.get("classLocation") != null) {
+                this.classLocation = objClasses.get("classLocation").toString();
+            } else {
+                this.classLocation = "";
+            }
+            if (objClasses.get("classDay") != null) {
+                this.classDay = objClasses.get("classDay").toString();
+            } else {
+                this.classDay = "";
+            }
+            if (objClasses.get("notification") != null) {
+                this.notification = Boolean.parseBoolean(objClasses.get("notification").toString());
+            } else {
+                this.notification = false;
+            }
+        }catch (NullPointerException e){
+            this.className = "";
+            this.sectionNumber = "";
+            this.classLocation = "";
+            this.classDay = "";
+            this.notification = false;
+            e.printStackTrace();
+        }
     }
 
     public String getClassName() { return className; }

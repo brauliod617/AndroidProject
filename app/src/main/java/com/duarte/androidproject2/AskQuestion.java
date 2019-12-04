@@ -56,7 +56,6 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
@@ -69,13 +68,13 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
 
         if(strQuestionTitle.isEmpty()) {
             Toast.makeText(this, "Must enter a question Title",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
         if(strQuestion.isEmpty()) {
             Toast.makeText(this, "Must enter a question",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -97,13 +96,13 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
 
     @Override //called from FirebaseHelper if upload question success
     public void questionPostedSuccessfully(){
-        Toast.makeText(this, "Question posted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Question posted", Toast.LENGTH_LONG).show();
         finish();
     }
     @Override //called from FirebaseHelper if upload question fails
     public void questionPostedFailure(){
         Toast.makeText(this, "Error has occurred question was not posted",
-                Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_LONG).show();
         finish();
     }
 

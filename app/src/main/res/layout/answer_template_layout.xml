@@ -39,9 +39,8 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="434dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/material_grey_500"
+        android:layout_height="1dp"
+        android:background="@color/colorPurple"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
