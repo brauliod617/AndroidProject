@@ -66,4 +66,6 @@
     <string name="your_question">Your question</string>
     <string name="laura_yahoo_com">Laura@yahoo.com</string>
     <string name="smallLorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Augue neque gravida in fermentum et sollicitudin ac orci. Sed tempus urna et pharetra. Ultricies mi quis hendrerit dolor magna eget. Enim praesent elementum facilisis leo vel.</string>
+    <string name="ask_question">Ask Question</string>
+    <string name="class_name">Class Name</string>
 </resources>

@@ -2,6 +2,7 @@ package com.duarte.androidproject2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,20 +22,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AskQuestion extends AppCompatActivity implements QuestionInterface{
 
-    FirebaseHelper firebaseHelper;
-
+    private FirebaseHelper firebaseHelper;
     Questions questions;
-
-    EditText edtQuestionTitle;
-    EditText edtQuestion;
-
+    TextView tv_class_title;
+    private EditText edtQuestionTitle;
+    private EditText edtQuestion;
     String strQuestionTitle;
     String strQuestion;
-
     ImageButton btnBack;
-
-    Bundle bundle;
-
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +44,12 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
 
         firebaseHelper = new FirebaseHelper();
 
+        tv_class_title = findViewById(R.id.tx_class_name_ask_question);
+
+        if(bundle.get("classOfQuestion") != null) {
+            tv_class_title.setText(bundle.get("classOfQuestion").toString());
+        }
+
         edtQuestionTitle = findViewById(R.id.edtQuestionTitle);
         edtQuestion = findViewById(R.id.edtQuestion);
 
@@ -59,6 +61,9 @@ public class AskQuestion extends AppCompatActivity implements QuestionInterface{
                 finish();
             }
         });
+
+
+
     }
 
     public void postQuestion(View view){

@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
                             Toast.makeText(MainActivity.this, R.string.auth_failed, Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(MainActivity.this,
-                                    "bobWelcome back " + mAuth.getCurrentUser().getEmail(),
+                                    "Welcome back " + mAuth.getCurrentUser().getEmail(),
                                     Toast.LENGTH_LONG).show();
                         }
 
