@@ -42,7 +42,7 @@ public class ReplyActivity extends AppCompatActivity implements PullAnswersInter
         }else {
             //Fatal error
             Toast.makeText(this, "Fatal Error has Occurred",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             finish();
         }
 

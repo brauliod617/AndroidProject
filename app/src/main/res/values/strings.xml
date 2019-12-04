@@ -42,7 +42,7 @@
     <!-- Strings related to errors -->
     <string name="auth_failed">Authorization failed</string>
     <string name="error_field_required">This field is required</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_incorrect_password">Passwords do not match</string>
     <string name="error_password_length">Password should be at least 6 letters</string>
 
     <!-- ActionBar strings -->

@@ -58,6 +58,8 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        firebaseHelper = new FirebaseHelper();
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -137,14 +139,14 @@ public class Register extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(Register.this,
                                     "Welcome " + mAuth.getCurrentUser().getEmail(),
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                             // Create new user
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //firebaseHelper.registerStudentFirebase(student);
+                            firebaseHelper.registerStudentEmailFirebase(nEmail);
 
                         } else {
                             Toast.makeText(Register.this, R.string.auth_failed,
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                         }
 
                     }

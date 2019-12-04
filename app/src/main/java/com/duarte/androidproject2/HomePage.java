@@ -141,7 +141,7 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
         //if same student tries to sign up for same class and section, don't allow it
         if(isInClassExists){
             Log.println(Log.DEBUG, "log", "isInClass entry already exist");
-            Toast.makeText(getApplicationContext(), "This class already exists!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "This class already exists!", Toast.LENGTH_LONG).show();
         }else {
             //if student is not registered for this class, we add the entry
             //add isInClass tuple to database
@@ -161,16 +161,29 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
     //we need it primarily for classes list
     @Override
     public void onGetStudentTuple(Task<QuerySnapshot> task){
+        boolean studentLoaded = false;
 
         for(QueryDocumentSnapshot current : task.getResult()){
-            if(current.get("email").equals(firebaseUser.getEmail())){
+
+            if( current.get("email") != null && current.get("email").equals(firebaseUser.getEmail())){
                 student = new Student( (HashMap<String, Object>) current.getData(), current.getId());
+                studentLoaded = true;
             }
         }
 
-        //now that we have loaded the student object and everything is okay,
-        //load classes
-        loadClasses();
+        //check if student did get loaded.
+        //this might fail if user login is registerd on phone but not DB
+        if(studentLoaded)
+            loadClasses();
+        else{
+            //TODO: this might be a bad idea idk
+            //delete user from firebase auth
+            firebaseUser.delete();
+
+
+            //return to main page
+            onBackPressed();
+        }
     }
 
     //for debug use only, make sure adapter is working
@@ -269,18 +282,18 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
                 switch (id){
                     case R.id.home:
-                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_LONG).show();
                         drawerLayout.closeDrawers();
                         home();
                         //finish();
                         break;
                     /*case R.id.notification:
-                        Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Notification",Toast.LENGTH_LONG).show();
                         drawerLayout.closeDrawers();
                         break;
                      */
                     case R.id.reset_password:
-                        Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_LONG).show();
                         resetPassword();
                         //finish();
                         break;

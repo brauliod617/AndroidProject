@@ -57,8 +57,6 @@ public class FirebaseHelper {
 
         mapStudent.put("email", email);
 
-        //TODO check if student exists before registering
-
         db.collection(studentCollection)
                 .add(mapStudent)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

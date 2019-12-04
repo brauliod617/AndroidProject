@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     private EditText mInputPassword;
     private Button mLoginButton;
     private TextView mCreateAccountLink;
+    private boolean canLoad;
 
     // Create reference to Firebase mAuth
     private FirebaseAuth mAuth;
@@ -64,15 +65,17 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        canLoad = true;
+
         firebaseHelper = new FirebaseHelper();
 
         // Views
-        mInputEmail = (EditText) findViewById(R.id.main_User);
-        mInputPassword = (EditText) findViewById(R.id.main_Password);
+        mInputEmail = findViewById(R.id.main_User);
+        mInputPassword = findViewById(R.id.main_Password);
 
         // Buttons
-        mLoginButton = (Button) findViewById(R.id.main_loginBtn);
-        mCreateAccountLink = (TextView) findViewById(R.id.link_create_account);
+        mLoginButton = findViewById(R.id.main_loginBtn);
+        mCreateAccountLink = findViewById(R.id.link_create_account);
 
         // Initialize Firebase mAuth object
         mAuth = FirebaseAuth.getInstance();
@@ -83,8 +86,13 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if (user != null) {
+                //can load is set to true at start, but can be set to false from
+                //validateStudentHelper if it failed loading the user
+                //can happen if user is deleted from DB
+                //this will force user to create new account
+                if (user != null && canLoad) {
                     callFirebaseHelperFunction(user.getEmail().toString());
+
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
 
@@ -93,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
                     startActivity(intent);
 
                     // Call to destroy an activity
-                    finish();
+                    //finish();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -157,11 +165,11 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
                         // and logic to handle the signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
-                            Toast.makeText(MainActivity.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, R.string.auth_failed, Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(MainActivity.this,
-                                    "Welcome back " + mAuth.getCurrentUser().getEmail(),
-                                    Toast.LENGTH_SHORT).show();
+                                    "bobWelcome back " + mAuth.getCurrentUser().getEmail(),
+                                    Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -202,8 +210,13 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
     @Override
     public void validateStundetHelper(Task <QuerySnapshot> task, String email) {
         boolean studentAlreadyInFirestore = false;
+        canLoad = false;
         for (QueryDocumentSnapshot document : task.getResult()) {
             HashMap<String, Object> current = (HashMap<String, Object>) document.getData();
+
+            if(current.get("email") == null){
+                return;
+            }
 
             if (current.get("email").equals(email)) {
                  studentAlreadyInFirestore = true;
@@ -215,6 +228,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseInterface
             Log.println(Log.DEBUG, "Log", "Adding Student to firestore");
         }
 
+        canLoad = true;
     }
 
     @Override

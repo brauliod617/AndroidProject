@@ -142,7 +142,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
 
                 switch (id){
                     case R.id.home:
-                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_LONG).show();
                         drawerLayout.closeDrawers();
                         home();
                         //finish();
@@ -153,7 +153,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
                         break;
                         */
                     case R.id.reset_password:
-                        Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Reset Password",Toast.LENGTH_LONG).show();
                         resetPassword();
                         //finish();
                         break;

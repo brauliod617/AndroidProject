@@ -94,7 +94,7 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
             Log.println(Log.DEBUG, "log", "Fields left empty");
             Toast.makeText(getContext(),
                     "Class name is empty!",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -102,7 +102,7 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
             Log.println(Log.DEBUG, "log", "Fields left empty");
             Toast.makeText(getContext(),
                     "Class section is empty!",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -111,7 +111,7 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
             Log.println(Log.DEBUG, "log", "Fields left empty");
             Toast.makeText(getContext(),
                     "Class location is empty!",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -119,7 +119,7 @@ public class CreateClassDialog extends DialogFragment implements DialogInterface
             Log.println(Log.DEBUG, "log", "Fields left empty");
             Toast.makeText(getContext(),
                     "Class day is empty!",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
