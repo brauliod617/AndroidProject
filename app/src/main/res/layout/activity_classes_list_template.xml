@@ -13,11 +13,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorTransparent"
+        android:contentDescription="@string/class_card_background"
+        android:paddingTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -68,21 +67,25 @@
 
         <RelativeLayout
             android:id="@+id/layout_classDay"
-            android:layout_width="50dp"
-            android:layout_height="100dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
+            android:layout_width="69dp"
+            android:layout_height="95dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imv_classes_list_bg"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toStartOf="@+id/imv_classes_list_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.238"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/txv_classDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:maxLength="5"
                 android:text="@string/mwf"
                 android:textColor="#000000"
-                app:fontFamily="@font/open_sans"
-                android:layout_centerInParent="true"/>
+                app:fontFamily="@font/open_sans" />
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
