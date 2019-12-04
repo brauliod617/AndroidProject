@@ -36,16 +36,13 @@
             tools:layout_editor_absoluteY="-5dp" />
 
         <ImageButton
-            android:id="@+id/imageButton21"
+            android:id="@+id/btn_back_to_question"
             android:layout_width="54dp"
-            android:layout_height="match_parent"
+            android:layout_height="56dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/menu_icon"
-            app:srcCompat="@drawable/ic_navbarmenu"
-            tools:layout_conversion_absoluteHeight="56dp"
-            tools:layout_conversion_absoluteWidth="54dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:srcCompat="@drawable/ic_back" />
+
 
         <TextView
             android:id="@+id/txvClassNameReplyAct"
