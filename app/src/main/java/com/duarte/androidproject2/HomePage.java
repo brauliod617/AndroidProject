@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class HomePage extends AppCompatActivity implements CreateDialogInterface,
         FirebaseClassesInterface{
 
@@ -199,7 +198,6 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
 
     @Override //Implementing FirebaseClassesInterface function
     public void onLoadClassesSuccess(Task<QuerySnapshot> task){
-        List<Classes> classesList = new ArrayList<>();
 
         //read database classes document, create class obj for each class in db, and add it to a list
         for(QueryDocumentSnapshot current : task.getResult()) {
@@ -209,12 +207,11 @@ public class HomePage extends AppCompatActivity implements CreateDialogInterface
             //if current class is a class the student is registerd for
             if(student.isInClass( temp )) {
                 //add it to the class list
-                classesList.add(temp);
+                adpter.add(temp);
             }
 
         }
         //call to function to create classes in homepage from class list
-        loadClassesFromList(classesList);
 
     }
 

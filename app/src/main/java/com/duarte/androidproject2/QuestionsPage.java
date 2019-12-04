@@ -23,7 +23,7 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
     List<Questions> questionsList;
     String className;
     FirebaseHelper firebaseHelper;
-
+    Bundle bundle;
     TextView txvClassTitleForNavBar;
 
     @Override
@@ -36,6 +36,10 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
 
         adapter = attachAdapterToList();
         adapter.setLoadQuestionInteface(this);
+
+        //will have ["selectedClass", "email", "classOfQuestion"]
+        //loaded from HomePage.java to be used in PostReplyActivity
+        bundle = getIntent().getExtras();
 
         className = getIntent().getExtras().get("classOfQuestion").toString();
         firebaseHelper.downloadQuestions(this);
@@ -96,9 +100,13 @@ public class QuestionsPage extends AppCompatActivity implements LoadQuestionInte
     @Override
     public void onQuestionClicked(Questions currentQuestion){
         Intent intent = new Intent(this, ReplyActivity.class);
-        Bundle bundle = new Bundle();
+
+        //bundle came from Homepage with
+        //["selectedClass", "email", "classOfQuestion"]
+        //adding "question" now
 
         bundle.putSerializable("question", currentQuestion);
+
         intent.putExtras(bundle);
 
         startActivity(intent);
