@@ -10,36 +10,47 @@
     tools:context="com.duarte.androidproject2.HomePage"
     tools:openDrawer="start">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:visibility="visible">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@color/colorPurple"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
             android:background="@color/colorAccent"
-            android:visibility="visible">
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/toolbar"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <!--    TODO: It would be cool if we could get this button to just hover over the listview
                           Idk how to do it yet though-->
             <ListView
                 android:id="@+id/classes_list_view"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="32dp"
                 android:background="@color/colorAccent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +63,6 @@
                 android:id="@+id/imageButton5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:background="@color/colorTransparent"
                 android:contentDescription="@string/add_class_button"
                 android:onClick="openDialog"
@@ -65,15 +75,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:visibility="visible">
+            android:id="@+id/navigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
-                android:layout_height="61dp"
-                android:layout_marginTop="-5dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="false"
                 android:contentDescription="@string/nav_bar_background"
                 android:cropToPadding="false"
@@ -83,8 +97,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton2"
-                android:layout_width="54dp"
-                android:layout_height="56dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@color/colorTransparent"
                 android:contentDescription="@string/menu_icon"
                 app:srcCompat="@drawable/ic_navbarmenu" />
@@ -93,39 +107,28 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginBottom="20dp"
                 android:text="@string/home"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="64dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="340dp"
-                android:layout_marginLeft="340dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="350dp"
-                android:layout_marginRight="350dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@color/colorTransparent"
                 android:contentDescription="@string/notification_bell_nav_bar"
                 app:srcCompat="@drawable/ic_alerts" />
         </com.google.android.material.navigation.NavigationView>
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:visibility="visible"
+        android:visibility="gone"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_navigation" />
 
