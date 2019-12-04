@@ -3,6 +3,7 @@ package com.duarte.androidproject2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ public class ReplyActivity extends AppCompatActivity implements PullAnswersInter
     TextView txvOpName;
     TextView txvQuestion;
     FirebaseHelper firebaseHelper;
+
+    ImageButton btnBack;
 
     Bundle bundle;
 
@@ -47,6 +50,7 @@ public class ReplyActivity extends AppCompatActivity implements PullAnswersInter
         txvQuestionTitle = findViewById(R.id.txvQuestionTitle);
         txvOpName = findViewById((R.id.txvOPname));
         txvQuestion = findViewById(R.id.txvQuestion);
+        btnBack = findViewById(R.id.btn_back_to_question);
 
         txvClassName.setText(question.getClassOfQuestion());
         txvQuestionTitle.setText(question.getQuestionTitle());
@@ -56,6 +60,14 @@ public class ReplyActivity extends AppCompatActivity implements PullAnswersInter
         firebaseHelper = new FirebaseHelper();
 
         adapter = attachAdapterToList();
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
 
         //will pull answers from DB, if success will call onPullAnswersSuccess
         //if failure will call onPullAnswerFailure, both implemented inside this class

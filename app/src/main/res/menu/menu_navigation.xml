@@ -7,10 +7,12 @@
             android:id="@+id/home"
             android:title="Home"
             android:icon="@drawable/ic_home"/>
+        <!--
         <item
             android:id="@+id/notification"
             android:title="Notification"
             android:icon="@drawable/ic_notification"/>
+            -->
         <item
             android:id="@+id/reset_password"
             android:title="Reset Passowrd"

@@ -49,9 +49,11 @@ public class ClassesAdpter extends ArrayAdapter<Classes> {
         TextView txvClassName = listItem.findViewById(R.id.txv_class_name);
         txvClassName.setText(currentClass.getClassName());
 
+        /*
         ImageButton imbNotificationBell = listItem.findViewById(R.id.imb_notifications_bell);
         imbNotificationBell.setImageResource(
                 currentClass.getNotification() ? R.drawable.ic_alertsrang : R.drawable.ic_alerts );
+         */
 
         background.setOnClickListener( new View.OnClickListener(){
             @Override

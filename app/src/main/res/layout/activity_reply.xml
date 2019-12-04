@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPurple"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.duarte.androidproject2.ReplyActivity">
@@ -36,16 +36,13 @@
             tools:layout_editor_absoluteY="-5dp" />
 
         <ImageButton
-            android:id="@+id/imageButton21"
+            android:id="@+id/btn_back_to_question"
             android:layout_width="54dp"
-            android:layout_height="match_parent"
+            android:layout_height="56dp"
             android:background="@color/colorTransparent"
             android:contentDescription="@string/menu_icon"
-            app:srcCompat="@drawable/ic_navbarmenu"
-            tools:layout_conversion_absoluteHeight="56dp"
-            tools:layout_conversion_absoluteWidth="54dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:srcCompat="@drawable/ic_back" />
+
 
         <TextView
             android:id="@+id/txvClassNameReplyAct"
@@ -67,53 +64,60 @@
 
     </com.google.android.material.navigation.NavigationView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/questionConstrainView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/common_google_signin_btn_text_dark_default"
-        app:layout_constraintBottom_toTopOf="@+id/greySpacer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navigationView2">
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/navigationView2"
+        tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/userlogo"
-            android:scaleType="center"
-            android:scaleX=".5"
-            android:scaleY=".5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/userlogo" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txvQuestionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/hhw6"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/userlogo"
+                android:scaleType="center"
+                android:scaleX=".5"
+                android:scaleY=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/userlogo" />
 
-        <TextView
-            android:id="@+id/txvOPname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/posted_by_braulio_yahoo_com"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toBottomOf="@+id/txvQuestionTitle" />
+            <TextView
+                android:id="@+id/txvQuestionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="20"
+                android:paddingRight="50dp"
+                android:text="@string/hhw6"
+                android:textColor="#000000"
+                android:textSize="14sp"
+
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txvOPname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/posted_by_braulio_yahoo_com"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@+id/txvQuestionTitle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:id="@+id/scvQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="278dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginEnd="16dp"
@@ -139,13 +143,13 @@
             </LinearLayout>
         </ScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
-        android:id="@+id/greySpacer"
+        android:id="@+id/Spacer"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:background="@color/material_grey_500"
+        android:background="@color/material_indigo_500"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,10 +163,12 @@
             android:layout_marginRight="16dp"
             android:gravity="center|start"
             android:text="@string/answers"
-            android:textColor="#000000" />
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/material_white_1000" />
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ScrollView
         android:id="@+id/cnlAnswers"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -171,7 +177,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAddAnswer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greySpacer">
+        app:layout_constraintTop_toBottomOf="@+id/Spacer"
+        >
 
         <ListView
             android:id="@+id/lsvAnswers"
@@ -181,8 +188,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintVertical_bias="0.0"
+            />
+    </ScrollView>
 
     <Button
         android:id="@+id/btnAddAnswer"
