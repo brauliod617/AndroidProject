@@ -70,6 +70,7 @@
         android:layout_height="wrap_content"
         android:background="@color/common_google_signin_btn_text_dark_default"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/Spacer"
         app:layout_constraintTop_toBottomOf="@+id/navigationView2"
         tools:ignore="MissingConstraints">
 
